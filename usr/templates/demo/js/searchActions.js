@@ -76,8 +76,9 @@ function getUserWorks(user, type, grpIdx = 0) {
 }
 
 function getRank(mode = "day", grpIdx = 0) {
-  console.log(mode);
+  // 进度条
   NProgress.inc();
+  // 搜索动画
   cssShowLoading();
   $.ajax({
     type: "GET",

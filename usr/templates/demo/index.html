@@ -12,7 +12,8 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="font/iconfont.css" />
+
+    <!-- <link rel="stylesheet" href="font/iconfont.css" /> -->
     <title>PixivBiu</title>
 
     <style>
@@ -217,7 +218,7 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img
-                src="..\..\static\demo\images\fulls\01.jpg"
+                src="..\..\static\multiverse\images\fulls\01.jpg"
                 class="d-block w-100"
                 alt="..."
               />
@@ -230,7 +231,7 @@
             </div>
             <div class="carousel-item">
               <img
-                src="..\..\static\demo\images\fulls\02.jpg"
+                src="..\..\static\multiverse\images\fulls\02.jpg"
                 class="d-block w-100"
                 alt="..."
               />
@@ -243,7 +244,7 @@
             </div>
             <div class="carousel-item">
               <img
-                src="..\..\static\demo\images\fulls\03.jpg"
+                src="..\..\static\multiverse\images\fulls\03.jpg"
                 class="d-block w-100"
                 alt="..."
               />
@@ -282,110 +283,10 @@
             <div class="row gy-2">
               <h3>热门推荐</h3>
             </div>
-            <div class="row row-cols-3 row-cols-lg-3 g-2 g-lg-3">
-              <div class="col">
-                <div class="card">
-                  <img
-                    src="..\..\static\demo\images\thumbs\10.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card">
-                  <img
-                    src="..\..\static\demo\images\thumbs\10.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card">
-                  <img
-                    src="..\..\static\demo\images\thumbs\10.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card">
-                  <img
-                    src="..\..\static\demo\images\thumbs\10.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card">
-                  <img
-                    src="..\..\static\demo\images\thumbs\10.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card">
-                  <img
-                    src="..\..\static\demo\images\thumbs\10.jpg"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div
+              id="Card-img"
+              class="row row-cols-3 row-cols-lg-3 g-2 g-lg-3"
+            ></div>
           </div>
         </div>
       </div>
@@ -422,16 +323,14 @@
         </div>
       </div>
     </div>
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script src="js/searchSettings.js"></script>
-    <script src="js/searchActions.js"></script>
+
     <script>
       var tmpCode;
       var tmpPageData;
@@ -450,166 +349,29 @@
         ],
       };
 
-      $(document).ready(function () {
-        loadSearchSettings();
-        progresserDownloading_auto();
-        $("#myBox").popmenu();
-        $("#codeBox").popmenu();
-        $("#rankBox").popmenu();
-        loadTooltip();
-        let c = getGetArg("code");
-        if (c) {
-          c = unescape(c);
-          setTimeout('changeSrhBox("' + c + '", 2)', 300);
-        }
-      });
+      var text = $.ajax({
+        url: "api/biu/get/rank/",
+        type: "GET",
+        data: {
+          mode: "day",
+          totalPage: 1,
+          groupIndex: 0,
+        },
+        success: function (rep) {
+          rep = jQuery.parseJSON(JSON.stringify(rep));
 
-      $("#srhBox").keypress(function (e) {
-        if (e.which === 13 && $("#srhBox").val() !== "") {
-          srhBoxDo();
-        }
-      });
-
-      $("#srhBox").bind("input propertychange", function (event) {
-        srhBoxStu();
-      });
-
-      function srhBoxDo() {
-        const c = $("#srhBox").val();
-        if ((m = regMatch(/@u=(.*?) -(.)/g, c)).length === 3) {
-          const user = m[1];
-          const code = m[2];
-          if (code === "i") {
-            $("title").html("TA 插画 - PixivBiu");
-            getUserWorks(user, "illust");
-          } else if (code === "c") {
-            $("title").html("TA 漫画 - PixivBiu");
-            getUserWorks(user, "manga");
-          } else if (code === "m") {
-            $("title").html("TA 收藏 - PixivBiu");
-            getMarks(user);
-          } else if (code === "f") {
-            $("title").html("TA 关注 - PixivBiu");
-            getFollowing(user);
-          }
-        } else if ((m = regMatch(/@s=(.*?) -(.)/g, c)).length === 3) {
-          const kt = m[1];
-          const code = m[2];
-          if (code === "t") {
-            $("title").html(kt + " - 部分标签搜索");
-            searchForWorks(kt, 0, 1, "tag");
-          } else if (code === "o") {
-            $("title").html(kt + " - 全标签搜索");
-            searchForWorks(kt, 0, 1, "otag");
-          } else if (code === "d") {
-            $("title").html(kt + " - 标题或描述搜索");
-            searchForWorks(kt, 0, 1, "des");
-          }
-        } else if ((m = regMatch(/@w=(.*?)$/g, c)).length === 2) {
-          $("title").html("作品 - PixivBiu");
-          getOneWork(m[1]);
-        } else if ((m = regMatch(/@su=(.*?)$/g, c)).length === 2) {
-          $("title").html("用户搜索 - PixivBiu");
-          searchForUsers(m[1]);
-        } else {
-          $("title").html("PixivBiu");
-          searchForWorks(c);
-        }
-        srhBoxStu();
-      }
-
-      function srhBoxStu() {
-        let code;
-        const c = $("#srhBox").val();
-        if ((m = regMatch(/@u=(.*?) -(.)/g, c)).length === 3) {
-          code = m[2];
-          if (code === "i") {
-            $("#srhBox").tooltipster("content", "指令 · 获取TA的 插画 作品");
-          } else if (code === "c") {
-            $("#srhBox").tooltipster("content", "指令 · 获取TA的 漫画 作品");
-          } else if (code === "m") {
-            $("#srhBox").tooltipster("content", "指令 · 获取TA的 收藏 列表");
-          } else if (code === "f") {
-            $("#srhBox").tooltipster("content", "指令 · 获取TA的 关注 列表");
+          if (rep.code) {
+            console.log(rep.msg.rst.data);
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
           } else {
-            $("#srhBox").tooltipster(
-              "content",
-              "指令 · -i 插画、-c 漫画、-m 收藏列表、-f 关注列表"
-            );
+            showPics("Error :<", ["main"], []);
           }
-        } else if ((m = regMatch(/@s=(.*?) -(.)/g, c)).length == 3) {
-          code = m[2];
-          if (code === "t") {
-            $("#srhBox").tooltipster("content", "指令 · 匹配部分标签搜索");
-          } else if (code === "o") {
-            $("#srhBox").tooltipster("content", "指令 · 匹配全标签搜索");
-          } else if (code === "d") {
-            $("#srhBox").tooltipster("content", "指令 · 匹配标题或描述搜索");
-          } else {
-            $("#srhBox").tooltipster(
-              "content",
-              "指令 · -t 部分标签、-o 全标签、-d 标题或描述"
-            );
-          }
-        } else if (regMatch(/@u=(.*?)$/g, c).length === 2) {
-          $("#srhBox").tooltipster(
-            "content",
-            "指令 @u={user_id} -{type} · 获取指定用户的 -i 插画、-c 漫画、-m 收藏列表、-f 关注列表"
-          );
-        } else if (regMatch(/@s=(.*?)$/g, c).length === 2) {
-          $("#srhBox").tooltipster(
-            "content",
-            "指令 · 以指定匹配模式搜索 -t 部分标签、-o 全标签、-d 标题或描述"
-          );
-        } else if (regMatch(/@w=(.*?)$/g, c).length === 2) {
-          $("#srhBox").tooltipster(
-            "content",
-            "指令 @w={work_id} · 搜索指定 ID 的作品"
-          );
-        } else if (regMatch(/@su=(.*?)$/g, c).length === 2) {
-          $("#srhBox").tooltipster(
-            "content",
-            "指令 @su={keyword} · 搜索相关用户"
-          );
-        } else {
-          $("#srhBox").tooltipster("content", "搜索 · 回车执行");
-        }
-      }
-
-      function grpIdxBoxStu() {
-        var c = $("#headerGrpIdxBox").val();
-        var oric = $("#headerGrpIdxBox").attr("placeholder");
-        var itm = $("#btnHeaderNext");
-        var itmi = $("#btnHeaderNext i");
-        var txt = "下一组";
-        if (itm.length <= 0) {
-          itm = $("#btnHeaderBack");
-          itmi = $("#btnHeaderBack i");
-          txt = "返回";
-        }
-        if (itm.length <= 0) return;
-        if (c !== "" && !isNaN(c) && c !== oric) {
-          itm.attr("href", "javascript: grpActChon('now', " + Number(c) + ");");
-          itmi.tooltipster("content", "跳转");
-        } else {
-          itm.attr("href", "javascript: grpActChon('next');");
-          itmi.tooltipster("content", txt);
-        }
-      }
-
-      function dlPageAll() {
-        if (
-          confirm(
-            "你确定要一下子下载全部的图片嘛？！还是原图哎...\n其实点击图片右上角也可以下载。"
-          )
-        )
-          $(".thumbAction").each(function () {
-            if ($(this).children("a:last")[0]["target"] !== "_blank") {
-              $(this).children("a:last")[0].click();
-            }
-          });
-      }
-
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
       function showPics(
         title = "",
         reLoadList = ["main", "header"],
@@ -629,7 +391,6 @@
           let i = 0;
           const data = c.rst.data;
           const groupIndex = Number(c["args"]["ops"]["groupIndex"]);
-
           // 整理结果
           // 用户作品类的用户信息显示
           if (
@@ -725,8 +486,9 @@
             var extra = "";
             var imgUrlCover = data[i]["image_urls"]["medium"].replace(
               "https://i.pximg.net",
-              tmpSearchSettings["pixivbiu_RvrProxyUrl"]
+              "https://i.pixiv.cat"
             );
+            console.log(imgUrlCover);
             var imgUrl = data[i]["image_urls"]["large"].replace(
               "https://i.pximg.net",
               tmpSearchSettings["pixivbiu_RvrProxyUrl"]
@@ -747,7 +509,7 @@
 
             if (tmpSearchSettings["pixivbiu_displayIsOriPic"] !== "on")
               imgUrl = imgUrlCover;
-
+            console.log(imgUrlCover);
             if (c["args"]["ops"]["method"] === "rank") bookedNum = "";
 
             // 收藏按钮
@@ -857,23 +619,29 @@
             }
 
             // 最终结果
+
             rstHtml +=
-              '<article id="art_' +
+              '<div class="col" id = "' +
               data[i]["id"] +
-              '" class="thumb"><a href="' +
+              '"><div class="card">' +
+              '<a href="' +
               imgUrl +
-              '" class="image"><img src="' +
+              '">' +
+              '<img src="' +
               imgUrlCover +
-              '" alt="' +
+              '"class="card-img-top"' +
+              'alt="' +
               data[i]["title"] +
-              '" /></a>' +
-              desText +
-              "<p>" +
+              '"/></a>' +
+              '<div class="card-body">' +
+              '<h5 class="card-title">' +
+              data[i]["title"] +
+              "</h5>" +
+              '<p class="card-text">' +
               extraText +
-              '</p><section class="thumbAction">' +
-              extra +
-              "</section></article>";
+              "</p></div></div></div>";
           }
+          console.log(rstHtml);
 
           // 一键下载
           headerHtml +=
@@ -920,7 +688,7 @@
           }
 
           // 输出
-          $("#main").html(rstHtml);
+          $("#Card-img").html(rstHtml);
 
           if ($.inArray("header", reLoadList) >= 0) {
             $("#rstHeaderShow").html(headerHtml);
@@ -931,21 +699,7 @@
           $("#main").html(btnGetHTML("none"));
           reMainJs(jQuery, ["main"]);
         }
-        // 动画过渡
-        window.setTimeout(function () {
-          $("body").removeClass("is-preload");
-          if (title !== "") {
-            $(".search-area").addClass("search-area-by");
-            $("#srhBox").attr("placeholder", title);
-          }
-        }, 100);
-        loadTooltip();
       }
     </script>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
   </body>
 </html>
