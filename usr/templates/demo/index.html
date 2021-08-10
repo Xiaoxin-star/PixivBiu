@@ -35,6 +35,13 @@
       body {
         background-color: #f2f2f2;
       }
+      .card-img-items .card {
+        height: 400px;
+      }
+      .card-img-items .card img {
+        object-fit: cover;
+        height: 300px;
+      }
     </style>
   </head>
   <body>
@@ -285,7 +292,7 @@
             </div>
             <div
               id="Card-img"
-              class="row row-cols-3 row-cols-lg-3 g-2 g-lg-3"
+              class="row row-cols-3 row-cols-lg-4 g-2 g-lg-3"
             ></div>
           </div>
         </div>
@@ -621,7 +628,7 @@
             // 最终结果
 
             rstHtml +=
-              '<div class="col" id = "' +
+              '<div class="col card-img-items" id = "' +
               data[i]["id"] +
               '"><div class="card">' +
               '<a href="' +
@@ -629,14 +636,14 @@
               '">' +
               '<img src="' +
               imgUrlCover +
-              '"class="card-img-top"' +
+              ' "class="img-thumbnail card-img-top img-fluid"' +
               'alt="' +
               data[i]["title"] +
               '"/></a>' +
               '<div class="card-body">' +
-              '<h5 class="card-title">' +
+              '<h6 class="card-title">' +
               data[i]["title"] +
-              "</h5>" +
+              "</h6>" +
               '<p class="card-text">' +
               extraText +
               "</p></div></div></div>";
