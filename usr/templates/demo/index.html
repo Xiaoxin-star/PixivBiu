@@ -13,7 +13,7 @@
       crossorigin="anonymous"
     />
 
-    <!-- <link rel="stylesheet" href="font/iconfont.css" /> -->
+    <link rel="stylesheet" href="./font/iconfont.css" />
     <title>PixivBiu</title>
 
     <style>
@@ -35,12 +35,15 @@
       body {
         background-color: #f2f2f2;
       }
-      .card-img-items .card {
-        height: 400px;
+      .card-group .card-title {
+        height: 40px;
       }
-      .card-img-items .card img {
+      .card-group .card {
+        height: 540px;
+      }
+      .card-group .card img {
         object-fit: cover;
-        height: 300px;
+        height: 400px;
       }
     </style>
   </head>
@@ -65,6 +68,7 @@
               >
                 <span class="navbar-toggler-icon"></span>
               </button>
+
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
@@ -174,18 +178,40 @@
                   </li>
                 </ul>
                 <form class="d-flex">
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="搜索回车"
-                  />
-                  <button class="btn btn-outline-success" type="submit">
-                    Search
-                  </button>
+                  <div class="input-group mb-3">
+                    <input
+                      type="search"
+                      class="form-control"
+                      aria-label="Search"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="搜索回车"
+                    />
+
+                    <button
+                      class="btn btn-outline-success dropdown-toggle"
+                      type="submit"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Search
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end bg-primary">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li>
+                        <a class="dropdown-item" href="#">Another action</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#"
+                          >Something else here</a
+                        >
+                      </li>
+                      <li><hr class="dropdown-divider" /></li>
+                      <li>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                      </li>
+                    </ul>
+                  </div>
                 </form>
               </div>
             </div>
@@ -286,22 +312,25 @@
 
       <div id="Card">
         <div class="container">
-          <div class="row">
-            <div class="row gy-2">
-              <h3>热门推荐</h3>
-            </div>
-            <div
-              id="Card-img"
-              class="row row-cols-3 row-cols-lg-4 g-2 g-lg-3"
-            ></div>
-          </div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Library</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+          </nav>
         </div>
       </div>
+    </div>
+    <div class="container">
+      <div
+        class="row row-cols-sm-1 row-cols-xs-2 row-cols-md-3 row-cols-lg-4"
+        id="Card-img"
+      ></div>
     </div>
     <div id="footer" class="bg-dark">
       <div class="container">
         <div class="row">
-          <div class="col-1"></div>
           <div class="col">
             <h3 class="text-light">PIXIVBIU@2.1.0</h3>
             <p class="text-light">
@@ -330,14 +359,13 @@
         </div>
       </div>
     </div>
-
     <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-
+    <script src="./js/main.js"></script>
     <script>
       var tmpCode;
       var tmpPageData;
@@ -588,7 +616,6 @@
                 '">👀查看</a> ' +
                 extraText;
             }
-
             // 图片信息展示
             var desText =
               '<h2><a target="_blank" href="https://www.pixiv.net/artworks/' +
@@ -618,17 +645,14 @@
                 "</a> ";
             }
             desText = tagss + "</p>" + desText;
-
             if (c["args"]["ops"]["method"] === "oneWork" && i !== 0) {
               extra = "";
               extraText = "";
               desText = "";
             }
-
             // 最终结果
-
             rstHtml +=
-              '<div class="col card-img-items" id = "' +
+              '<div class="card-group" id = "' +
               data[i]["id"] +
               '"><div class="card">' +
               '<a href="' +
@@ -636,62 +660,18 @@
               '">' +
               '<img src="' +
               imgUrlCover +
-              ' "class="img-thumbnail card-img-top img-fluid"' +
+              ' " class="card-img-top"' +
               'alt="' +
               data[i]["title"] +
               '"/></a>' +
               '<div class="card-body">' +
-              '<h6 class="card-title">' +
+              '<h5 class="card-title">' +
               data[i]["title"] +
-              "</h6>" +
-              '<p class="card-text">' +
+              '"</h5><h6 class="card-subtitle mb-2 text-muted">"' +
+              extra +
+              '</h6><p class="card-text">' +
               extraText +
               "</p></div></div></div>";
-          }
-          console.log(rstHtml);
-
-          // 一键下载
-          headerHtml +=
-            '<li><a class="tooltip" href="javascript: dlPageAll();" title="下载本页所有图片（原图）">下载</a></li>';
-
-          // 缓存文件
-          if (tmpCode === 2) {
-            headerHtml +=
-              "<li><a href=\"javascript: searchForWorks('" +
-              c["args"]["fun"]["kt"]
-                .replaceAll("'", "\\'")
-                .replaceAll('"', '\\"') +
-              "', " +
-              groupIndex +
-              ', 0);">刷新缓存</a></li>';
-          } else {
-            headerHtml +=
-              "<li><a href=\"javascript: grpActChon('now');\">刷新</a></li>";
-          }
-
-          // 返回按钮
-          if (groupIndex > 0) {
-            headerHtml +=
-              '<li><a id="btnHeaderBack" href="javascript: grpActChon(\'back\');"><i class="icon solid fa-chevron-circle-left tooltip" title="返回"></i></a></li>';
-          } else if (groupIndex === 0) {
-            headerHtml +=
-              '<li><a href="."><i class="icon solid fa-home tooltip" title="主页"></i></a></li>';
-          }
-
-          // 组序号输入框
-          if (c["args"]["ops"]["method"] !== "userMarks") {
-            headerHtml +=
-              '<li><input oninput="grpIdxBoxStu();" id="headerGrpIdxBox" class="tooltip" placeholder="' +
-              c["args"]["ops"]["groupIndex"] +
-              '" autocomplete="off" title="组序号"></li>';
-          }
-
-          // 下一组按钮
-          if (data.length !== 0) {
-            headerHtml +=
-              '<li><a id="btnHeaderNext" href="javascript: grpActChon(\'next\');"><i class="icon solid fa-chevron-circle-right tooltip" title="下一组"></i></a></li>';
-          } else {
-            rstHtml = btnGetHTML("none");
           }
 
           // 输出
