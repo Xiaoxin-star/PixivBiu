@@ -14,19 +14,54 @@ var settingsMods = {
     "图片反代地址",
   ],
 };
-
-var text = $.ajax({
-  url: "api/biu/get/rank/",
+// 推荐插画
+// content_type: [illust, manga]
+// api/biu/get/recommend/?type=illust&totalPage=5&groupIndex=0&sortMode=0&isSort=0
+// 搜索
+// /api/biu/search/works/?kt=幼女&mode=tag&totalPage=5&isCache=1&groupIndex=0&sortMode=0
+$(".dropdown-item").click(function () {
+  var search_text = $(".search-text").val();
+  var mode = $("dropdown-item").val();
+  // $(".search-text").val(null);
+  $.ajax({
+    url: "api/biu/search/works/",
+    type: "GET",
+    data: {
+      kt: search_text,
+      mode: mode,
+      totalPage: 1,
+      isCache: 0,
+      groupIndex: 0,
+      sortMode: 0,
+    },
+    success: function (rep) {
+      console.log(rep);
+      rep = $.parseJSON(JSON.stringify(rep));
+      if (rep.code) {
+        tmpPageData = rep.msg;
+        showPics("排行榜@", ["main", "header"]);
+      } else {
+        showPics("Error :<", ["main"], []);
+      }
+    },
+    error: function (rep) {
+      showPics("Error :<", ["main"], []);
+    },
+  });
+});
+$.ajax({
+  url: "api/biu/get/recommend/",
   type: "GET",
   data: {
-    mode: "day",
-    totalPage: 1,
+    type: "illust",
+    totalPage: 5,
     groupIndex: 0,
+    sortMode: 0,
+    isSort: 0,
   },
   success: function (rep) {
-    rep = jQuery.parseJSON(JSON.stringify(rep));
+    rep = $.parseJSON(JSON.stringify(rep));
     if (rep.code) {
-      console.log(rep.msg.rst.data);
       tmpPageData = rep.msg;
       showPics("排行榜@", ["main", "header"]);
     } else {
@@ -37,6 +72,29 @@ var text = $.ajax({
     showPics("Error :<", ["main"], []);
   },
 });
+
+// $.ajax({
+//   url: "api/biu/get/rank/",
+//   type: "GET",
+//   data: {
+//     mode: "day",
+//     totalPage: 1,
+//     groupIndex: 0,
+//   },
+//   success: function (rep) {
+//     rep = jQuery.parseJSON(JSON.stringify(rep));
+//     if (rep.code) {
+//       console.log(rep.msg.rst.data);
+//       tmpPageData = rep.msg;
+//       showPics("排行榜@", ["main", "header"]);
+//     } else {
+//       showPics("Error :<", ["main"], []);
+//     }
+//   },
+//   error: function (rep) {
+//     showPics("Error :<", ["main"], []);
+//   },
+// });
 function showPics(
   title = "",
   reLoadList = ["main", "header"],
@@ -44,18 +102,10 @@ function showPics(
 ) {
   let rstHtml = "",
     kt;
-  let headerHtml =
-    '<li><a href="javascript: isShowSettings();">搜索设置</a></li>';
-  const typeName = {
-    illustration: "图",
-    manga: "漫",
-    ugoira: "动",
-    other: "其他",
-  };
+
   if (c.rst && c.rst.data) {
     let i = 0;
     const data = c.rst.data;
-    const groupIndex = Number(c["args"]["ops"]["groupIndex"]);
 
     // 通用作品整理
     for (
@@ -149,15 +199,7 @@ function showPics(
         extraText +
         "</p></div></div></div>";
     }
-
     // 输出
     $("#Card-img").html(rstHtml);
-
-    if ($.inArray("header", reLoadList) >= 0) {
-      $("#rstHeaderShow").html(headerHtml);
-    }
-  } else {
-    $("#main").html(btnGetHTML("none"));
-    reMainJs(jQuery, ["main"]);
   }
 }

@@ -9,6 +9,10 @@
     <link href="/static/demo/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
       href="/static/demo/assets/css/chromagallery.min.css"
     />
     <title>PixivBiu</title>
@@ -113,10 +117,11 @@
             <form class="d-flex">
               <input
                 type="search"
-                class="form-control"
+                class="form-control search-text"
                 aria-label="Text input with dropdown button"
               />
               <button
+                id="search-works"
                 class="btn btn-outline-secondary dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
@@ -125,15 +130,20 @@
                 搜索
               </button>
               <ul class="dropdown-menu dropdown-menu-end bg-dark">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">标题/描述</a></li>
+                <li><a class="dropdown-item" href="#">非精确标签</a></li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">精确标签</a>
                 </li>
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                <li><a class="dropdown-item" href="#">描述</a></li>
+                <li><a class="dropdown-item" href="#"> 所有</a></li>
+                <li><a class="dropdown-item" href="#">一天之内</a></li>
+                <li><a class="dropdown-item" href="#">一周之内</a></li>
+                <li><a class="dropdown-item" href="#">新顺序</a></li>
+                <li><a class="dropdown-item" href="#">旧顺序</a></li>
               </ul>
             </form>
             <!-- 右侧个人中心 -->
@@ -164,7 +174,8 @@
       </nav>
     </div>
     <div id="main">
-      <div id="Carousel" class="row">
+      <!-- 轮播图 -->
+      <!-- <div id="Carousel" class="row">
         <div
           id="carouselExampleCaptions"
           class="carousel slide col"
@@ -252,7 +263,7 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="container">
       <div
