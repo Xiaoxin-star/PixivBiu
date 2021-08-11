@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link type="favicon" rel="shortcut icon" href="static/pixiv.png" />
-    <!-- Bootstrap CSS -->
+
     <link href="/static/demo/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -56,423 +55,240 @@
     </style>
   </head>
   <body>
-    <div id="header">
-      <!-- 导航 -->
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">首页</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:ranking_all('week_rookie')"
-                  >插画</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:ranking_all('week_rookie')"
-                  >漫画</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  R18
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('day_r18')"
-                      >R18每日</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('day_male_r18')"
-                      >男性R18每日</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('day_female_r18')"
-                      >女性R18每日</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('week_r18')"
-                      >每周R18</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('week_r18g')"
-                      >每周r18g</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  排行榜
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('week_original')"
-                      >原创</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('day')"
-                      >每日</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('week')"
-                      >每周</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('month')"
-                      >每月</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('day_male')"
-                      >男性热门</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('day_female')"
-                      >女性热门</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="javascript:ranking_all('week_rookie')"
-                      >新人作品</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a
-                  type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasBottom"
-                  aria-controls="offcanvasBottom"
-                  class="nav-link"
-                  href="#"
-                  >关于</a
-                >
-              </li>
-            </ul>
-
-            <!-- 搜索 -->
-            <form class="d-flex">
-              <input
-                type="search"
-                class="form-control search-text"
-                aria-label="Text input with dropdown button"
-                placeholder="Search"
-              />
-              <button
-                id="search-works"
-                class="btn btn-outline-secondary dropdown-toggle"
-                type="button"
+    <!-- 导航 -->
+    <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./">首页</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:ranking_all('week_rookie')"
+                >插画</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:ranking_all('week_rookie')"
+                >漫画</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                Required
               >
-                搜索
-              </button>
-              <div class="valid-feedback">Looks good!</div>
-              <div class="invalid-feedback">Please provide a valid city.</div>
-              <ul class="dropdown-menu dropdown-menu-end bg-dark">
-                <li><a class="dropdown-item" href="#">标题/描述</a></li>
-                <li><a class="dropdown-item" href="#">非精确标签</a></li>
+                R18
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="#">精确标签</a>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('day_r18')"
+                    >R18每日</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('day_male_r18')"
+                    >男性R18每日</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('day_female_r18')"
+                    >女性R18每日</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('week_r18')"
+                    >每周R18</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('week_r18g')"
+                    >每周r18g</a
+                  >
                 </li>
               </ul>
-            </form>
-            <!-- 右侧个人中心 -->
-            <!-- <ul class="nav justify-content-end">
-        <li class="nav-item dropdown">
-
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://img0.baidu.com/it/u=3353211517,995971476&fm=26&fmt=auto&gp=0.jpg"
-              class="rounded-circle" alt="..." style="width: 40px;">
-
-            个人中心
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                排行榜
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('week_original')"
+                    >原创</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:ranking_all('day')"
+                    >每日</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:ranking_all('week')"
+                    >每周</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('month')"
+                    >每月</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('day_male')"
+                    >男性热门</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('day_female')"
+                    >女性热门</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:ranking_all('week_rookie')"
+                    >新人作品</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasBottom"
+                aria-controls="offcanvasBottom"
+                class="nav-link"
+                href="#"
+                >搜索</a
+              >
+            </li>
           </ul>
-        </li>
-        </li>
+          <!-- 右侧个人中心 -->
+          <ul class="nav justify-content-end">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://img0.baidu.com/it/u=3353211517,995971476&fm=26&fmt=auto&gp=0.jpg"
+                  class="rounded-circle"
+                  alt="..."
+                  style="width: 40px"
+                />
 
-      </ul> -->
-          </div>
+                个人中心
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">收藏@公开</a></li>
+                <li><a class="dropdown-item" href="#">收藏@隐藏</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#">关注@公开</a></li>
+                <li><a class="dropdown-item" href="#">关注@隐藏</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#">新作@公开</a></li>
+                <li><a class="dropdown-item" href="#">新作@隐藏</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#">推荐@插画</a></li>
+                <li><a class="dropdown-item" href="#">推荐@漫画</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
 
-    <!-- 表单验证 -->
-    <!-- <form class="row g-3 needs-validation" novalidate>
-      <div class="col-md-4 position-relative">
-        <label for="validationTooltip01" class="form-label">First name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="validationTooltip01"
-          value="Mark"
-          required
-        />
-        <div class="valid-tooltip">Looks good!</div>
-      </div>
-      <div class="col-md-4 position-relative">
-        <label for="validationTooltip02" class="form-label">Last name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="validationTooltip02"
-          value="Otto"
-          required
-        />
-        <div class="valid-tooltip">Looks good!</div>
-      </div>
-      <div class="col-md-4 position-relative">
-        <label for="validationTooltipUsername" class="form-label"
-          >Username</label
-        >
-        <div class="input-group has-validation">
-          <span class="input-group-text" id="validationTooltipUsernamePrepend"
-            >@</span
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="validationTooltipUsername"
-            aria-describedby="validationTooltipUsernamePrepend"
-            required
-          />
-          <div class="invalid-tooltip">
-            Please choose a unique and valid username.
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 position-relative">
-        <label for="validationTooltip03" class="form-label">City</label>
-        <input
-          type="text"
-          class="form-control"
-          id="validationTooltip03"
-          required
-        />
-        <div class="invalid-tooltip">Please provide a valid city.</div>
-      </div>
-      <div class="col-md-3 position-relative">
-        <label for="validationTooltip04" class="form-label">State</label>
-        <select class="form-select" id="validationTooltip04" required>
-          <option selected disabled value="">Choose...</option>
-          <option>...</option>
-        </select>
-        <div class="invalid-tooltip">Please select a valid state.</div>
-      </div>
-      <div class="col-md-3 position-relative">
-        <label for="validationTooltip05" class="form-label">Zip</label>
-        <input
-          type="text"
-          class="form-control"
-          id="validationTooltip05"
-          required
-        />
-        <div class="invalid-tooltip">Please provide a valid zip.</div>
-      </div>
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </div>
-    </form> -->
-    <!-- 轮播图 -->
-    <!-- <div id="Carousel" class="row">
-      <div
-        id="carouselExampleCaptions"
-        class="carousel slide col"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="..\..\static\multiverse\images\fulls\01.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="..\..\static\multiverse\images\fulls\02.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="..\..\static\multiverse\images\fulls\03.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div> -->
-    <div class="container">
-      <div
-        class="row row-cols-sm-1 row-cols-xs-2 row-cols-md-3 row-cols-lg-4"
-        id="Card-img"
-      ></div>
-    </div>
-
-    <!-- <div id="footer" class="bg-dark">
+    <!-- 主题内容 -->
+    <div class="main">
       <div class="container">
-        <div class="row">
-          <div class="col">
-            <h3 class="text-light">PIXIVBIU@2.1.0</h3>
-            <p class="text-light">
-              一款不错的 Pixiv 搜索辅助工具。 基于 Python@3.7(+) 构建。
-            </p>
-            <h3 class="text-light">一些链接</h3>
-            <p>
-              <a class="text-white-50" href="">© 铜锣烧计划.</a>
-            </p>
-            <p>
-              <a class="text-white-50" href="">Created by Trii Hisa.</a>
-            </p>
-            <p>
-              <a class="text-white-50" href="">Design by HTML5 UP.</a>
-            </p>
-          </div>
-          <div class="col">
-            <h3 class="text-light">其他</h3>
-            <p class="text-light">如何使用? & 反馈</p>
-            <p class="text-white-50">
-              If you feel your rights have been violated, please contact me
-              through the information above. Sorry a lot.
-            </p>
-          </div>
-          <div class="col-1"></div>
+        <div
+          id="Card-img"
+          class="row row-cols-sm-1 row-cols-xs-2 row-cols-md-3 row-cols-lg-4"
+        ></div>
+      </div>
+    </div>
+    <!-- 尾部 -->
+    <div id="footer" class="bg-dark">
+      <div class="row">
+        <div class="col">
+          <h3 class="text-light">PIXIVBIU@2.1.0</h3>
+          <p class="text-light">
+            一款不错的 Pixiv 搜索辅助工具。 基于 Python@3.7(+) 构建。
+          </p>
+          <h3 class="text-light">一些链接</h3>
+          <p>
+            <a class="text-white-50" href="">© 铜锣烧计划.</a>
+          </p>
+          <p>
+            <a class="text-white-50" href="">Created by Trii Hisa.</a>
+          </p>
+          <p>
+            <a class="text-white-50" href="">Design by HTML5 UP.</a>
+          </p>
+        </div>
+        <div class="col">
+          <h3 class="text-light">其他</h3>
+          <p class="text-light">如何使用? & 反馈</p>
+          <p class="text-white-50">
+            If you feel your rights have been violated, please contact me
+            through the information above. Sorry a lot.
+          </p>
         </div>
       </div>
-    </div> -->
+    </div>
+    <!-- 弹出层 -->
 
     <div
       class="offcanvas offcanvas-bottom"
@@ -481,9 +297,7 @@
       aria-labelledby="offcanvasBottomLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasBottomLabel">
-          Offcanvas bottom
-        </h5>
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">搜索</h5>
         <button
           type="button"
           class="btn-close text-reset"
@@ -491,7 +305,58 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="offcanvas-body small">...</div>
+      <div class="offcanvas-body small">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >搜索类型</label
+                >
+                <select class="form-select mode" id="inputGroupSelect01">
+                  <option selected value="partial_match_for_tags">
+                    标签部分一致
+                  </option>
+                  <option value="exact_match_for_tags">标签完全一致</option>
+                  <option value="title_and_caption">标题说明文</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >排序方式</label
+                >
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected value="date_desc">日期降序</option>
+                  <option value="date_asc">日期升序</option>
+                  <option value="popular_desc">会员排序</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col">
+              <!-- 搜索 -->
+              <form class="d-flex">
+                <input
+                  class="form-control me-2 search-text"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button
+                  id="Search"
+                  class="btn btn-outline-success"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="static/demo/assets/js/jquery.min.js"></script>

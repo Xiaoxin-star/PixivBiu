@@ -19,38 +19,39 @@ class searchWorks(interRoot):
                     "&isCache=1",
                 ],
             )
+        
         except:
             return {"code": 0, "msg": "missing parameters"}
 
         code = 1
 
         isCache = (
-                int(args["ops"]["isCache"])
-                and self.CORE.biu.sets["biu"]["search"]["loadCacheFirst"]
+            int(args["ops"]["isCache"])
+            and self.CORE.biu.sets["biu"]["search"]["loadCacheFirst"]
         )
 
         cachePath = self.getENV("rootPath") + "usr/cache/data_search/"
         fileName = (
             (
-                    "%s@%s_%s+%s_%s%s.json"
-                    % (
-                        args["fun"]["kt"],
-                        args["fun"]["mode"],
-                        args["ops"]["totalPage"],
-                        args["ops"]["groupIndex"],
-                        args["ops"]["sortMode"],
-                        args["ops"]["isSort"],
-                    )
+                "%s@%s_%s+%s_%s%s.json"
+                % (
+                    args["fun"]["kt"],
+                    args["fun"]["mode"],
+                    args["ops"]["totalPage"],
+                    args["ops"]["groupIndex"],
+                    args["ops"]["sortMode"],
+                    args["ops"]["isSort"],
+                )
             )
-                .replace("\\", "#")
-                .replace("/", "#")
-                .replace(":", "#")
-                .replace("*", "#")
-                .replace("?", "#")
-                .replace('"', "#")
-                .replace("<", "#")
-                .replace(">", "#")
-                .replace("|", "#")
+            .replace("\\", "#")
+            .replace("/", "#")
+            .replace(":", "#")
+            .replace("*", "#")
+            .replace("?", "#")
+            .replace('"', "#")
+            .replace("<", "#")
+            .replace(">", "#")
+            .replace("|", "#")
         )
 
         if isCache:
@@ -77,7 +78,8 @@ class searchWorks(interRoot):
         }
 
         r = {"api": "app", "total": 0, "data": []}
-        self.STATIC.arg.argsPurer(funArg, {"kt": "word", "mode": "search_target"})
+        self.STATIC.arg.argsPurer(
+            funArg, {"kt": "word", "mode": "search_target"})
         funArg["search_target"] = modes[funArg["search_target"]]
 
         status = []
@@ -88,10 +90,12 @@ class searchWorks(interRoot):
         for p in range(grpIdx * ttlPage, (grpIdx + 1) * ttlPage):
             argg = funArg.copy()
             argg["offset"] = p * 30
-            status.append(self.CORE.biu.pool_srh.submit(self.__thread_appWorks, **argg))
+            status.append(self.CORE.biu.pool_srh.submit(
+                self.__thread_appWorks, **argg))
 
         self.CORE.biu.updateStatus(
-            "search", (funArg["word"] + "_" + str(ttlPage) + "+" + str(grpIdx)), status,
+            "search", (funArg["word"] + "_" + str(ttlPage) +
+                       "+" + str(grpIdx)), status,
         )
 
         for x in as_completed(status):
