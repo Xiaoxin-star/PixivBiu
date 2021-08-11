@@ -172,6 +172,7 @@ function showPics(
           '">👀查看</a> ' +
           extraText;
       }
+
       // 图片信息展示
       var desText =
         '<h2><a target="_blank" href="https://www.pixiv.net/artworks/' +
@@ -211,13 +212,14 @@ function showPics(
       rstHtml +=
         '<div class="card-group" id = "' +
         data[i]["id"] +
-        '"><div class="card">' +
+        '"><div class="card position-relative">' +
+        '<div id="role" class="img position-absolute top-50 start-50 translate-middle"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>' +
         '<a href="' +
         imgUrl +
         '">' +
         '<img src="' +
         imgUrlCover +
-        ' " class="card-img-top"' +
+        ' " class="card-img-top img-items"' +
         'alt="' +
         data[i]["title"] +
         '"/></a>' +
@@ -230,7 +232,9 @@ function showPics(
         extraText +
         "</p></div></div></div>";
     }
+
     // 输出
     $("#Card-img").html(rstHtml);
+    $(".img").hide();
   }
 }
