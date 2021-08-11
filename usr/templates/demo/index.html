@@ -36,7 +36,7 @@
         background-color: #f2f2f2;
       }
       .card-group .card-title {
-        height: 40px;
+        height: 70px;
       }
       .card-group .card {
         height: 540px;
@@ -49,175 +49,115 @@
   </head>
   <body>
     <div id="header">
-      <div class="container-fluid">
-        <div class="row fixed-top">
-          <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="./"
-                ><strong>PixivBiu</strong
-                ><span class="text-white-50">@1.2</span></a
-              >
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./"
-                      >主页</a
-                    >
+      <!-- 导航 -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider" />
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="javascript: getRank('day');"
-                      >漫画</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="javascript: getRank('day');"
-                      >新人</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="javascript: getRank('day');"
-                      >18R</a
-                    >
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      排行榜
-                    </a>
-                    <ul
-                      class="dropdown-menu bg-dark"
-                      aria-labelledby="navbarDropdown"
-                    >
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('day');"
-                          >日图</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('week');"
-                          >周图</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('month');"
-                          >月图</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('day_manga');"
-                          >日漫</a
-                        >
-                      </li>
-
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('week_manga');"
-                          >周漫</a
-                        >
-                      </li>
-
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('month_manga');"
-                          >月漫</a
-                        >
-                      </li>
-
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('day_r18');"
-                          >日R18</a
-                        >
-                      </li>
-
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('week_r18');"
-                          >周R18</a
-                        >
-                      </li>
-
-                      <li>
-                        <a
-                          class="dropdown-item"
-                          href="javascript: getRank('week_rookie');"
-                          >新人</a
-                        >
-                      </li>
-                    </ul>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
                   </li>
                 </ul>
-                <form class="d-flex">
-                  <div class="input-group mb-3">
-                    <input
-                      type="search"
-                      class="form-control"
-                      aria-label="Search"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="搜索回车"
-                    />
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link disabled"
+                  href="#"
+                  tabindex="-1"
+                  aria-disabled="true"
+                  >Disabled</a
+                >
+              </li>
+            </ul>
 
-                    <button
-                      class="btn btn-outline-success dropdown-toggle"
-                      type="submit"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Search
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end bg-primary">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li>
-                        <a class="dropdown-item" href="#">Another action</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#"
-                          >Something else here</a
-                        >
-                      </li>
-                      <li><hr class="dropdown-divider" /></li>
-                      <li>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                      </li>
-                    </ul>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </nav>
+            <!-- 搜索 -->
+            <form class="d-flex">
+              <input
+                type="search"
+                class="form-control"
+                aria-label="Text input with dropdown button"
+              />
+              <button
+                class="btn btn-outline-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                搜索
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end bg-dark">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+              </ul>
+            </form>
+            <!-- 右侧个人中心 -->
+            <!-- <ul class="nav justify-content-end">
+        <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://img0.baidu.com/it/u=3353211517,995971476&fm=26&fmt=auto&gp=0.jpg"
+              class="rounded-circle" alt="..." style="width: 40px;">
+
+            个人中心
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        </li>
+
+      </ul> -->
+          </div>
         </div>
-      </div>
+      </nav>
     </div>
     <div id="main">
       <div id="Carousel" class="row">
@@ -309,18 +249,6 @@
           </button>
         </div>
       </div>
-
-      <div id="Card">
-        <div class="container">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Library</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
     </div>
     <div class="container">
       <div
@@ -328,7 +256,8 @@
         id="Card-img"
       ></div>
     </div>
-    <div id="footer" class="bg-dark">
+
+    <!-- <div id="footer" class="bg-dark">
       <div class="container">
         <div class="row">
           <div class="col">
@@ -358,7 +287,7 @@
           <div class="col-1"></div>
         </div>
       </div>
-    </div>
+    </div> -->
     <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -667,7 +596,7 @@
               '<div class="card-body">' +
               '<h5 class="card-title">' +
               data[i]["title"] +
-              '"</h5><h6 class="card-subtitle mb-2 text-muted">"' +
+              '</h5><h6 class="card-subtitle mb-2 text-muted">' +
               extra +
               '</h6><p class="card-text">' +
               extraText +
