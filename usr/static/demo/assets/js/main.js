@@ -66,10 +66,12 @@ $("#types-of option").click(function () {
 // 搜索
 $("#Search").click(function () {
   var search_text = $(".search-text").val();
+  var tatalpage = $(".tatalpage").val();
+  console.log(tatalpage);
   types_of = $("#types-of").val();
   // $(".search-text").val(null);
   // var mode = $(".mode").val();
-  console.log(Number(types_of));
+
   switch (Number(types_of)) {
     case 1:
       // 搜索
@@ -161,7 +163,7 @@ $("#Search").click(function () {
           type: "illust",
           sortMode: 0,
           isSort: 0,
-          totalPage: 5,
+          totalPage: tatalpage,
           groupIndex: 0,
         },
         success: function (rep) {
@@ -316,7 +318,7 @@ function showPics(
       i++
     ) {
       var extra = "";
-      var imgUrlCover = data[i]["image_urls"]["medium"].replace(
+      var imgUrlCover = data[i]["image_urls"]["large"].replace(
         "https://i.pximg.net",
         settingsMods["#settingsRvrProxyUrl"][1]
       );
