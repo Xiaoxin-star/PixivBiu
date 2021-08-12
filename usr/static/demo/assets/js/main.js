@@ -380,23 +380,53 @@ function showPics(
       }
 
       // 最终结果
+      //   rstHtml +=
+      //     '<div class="col-sm-6 col-lg-4 mb-4" id="' +
+      //     data[i]["author"]["id"] +
+      //     '><div class="card">' +
+      //     '<img src="' +
+      //     imgUrlCover +
+      //     '" class="card-img-top" alt="' +
+      //     imgUrl +
+      //     '">' +
+      //     '<div class="card-body"><h5 class="card-title">' +
+      //     data[i]["author"]["title"] +
+      //     '</h5> <p class="card-text">' +
+      //     "This is a longer card with supporting text below as a natural" +
+      //     "lead-in to additional content. This content is a little bit" +
+      //     " longer." +
+      //     "</p> </div></div></div>";
+      // }
+
       rstHtml +=
-        '<div class="col-sm-6 col-md-5 col-lg-4 mb-4"><div class="card">' +
-        '<svg  class="bd-placeholder-img card-img-top" width="100%"  xmlns="' +
-        imgUrlCover +
-        '" role="img" ' +
-        ' aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false" >' +
-        '<title>Placeholder</title> <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>' +
-        '<div class="card-body"><h5 class="card-title">Card title that wraps to a new line</h5> <p class="card-text">' +
-        "This is a longer card with supporting text below as a natural" +
-        "lead-in to additional content. This content is a little bit" +
-        " longer." +
-        "</p> </div></div>";
+        '<div class="col-sm-6 col-lg-4 mb-4">' +
+        '<div class="card mb-3">' +
+        '<img src="' +
+        imgUrlCover;
+      '" class="card-img-top" alt="..." />' +
+        '<div class="card-body">' +
+        '<h5 class="card-title">Card title</h5>' +
+        '<p class="card-text">' +
+        " This is a wider card with supporting text below as a natural lead-in" +
+        " to additional content. This content is a little bit longer." +
+        " </p>" +
+        ' <p class="card-text">' +
+        '   <small class="text-muted">Last updated 3 mins ago</small>' +
+        "</p>" +
+        "</div>" +
+        "</div></div>";
     }
 
     // 输出
-    $("#img-items").html(rstHtml);
+    // $("#img-items").html(rstHtml);
     $(".img").hide();
+    // 重载js文件
+    $.getScript(
+      "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js",
+      function () {
+        newFun('"Checking new script"'); //这个函数是在new.js里面的，当点击click后运行这个函数
+      }
+    );
     $(".progress-bar").animate("width", "100%");
   }
 }
