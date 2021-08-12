@@ -25,7 +25,7 @@ function recommend(type = "illust") {
     type: "GET",
     data: {
       type: type,
-      totalPage: 5,
+      totalPage: 1,
       groupIndex: 0,
       sortMode: 0,
       isSort: 0,
