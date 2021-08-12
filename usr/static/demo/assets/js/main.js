@@ -3,6 +3,8 @@ var tmpPageData;
 var types_of;
 var tmpSearchSettings = {};
 var downloadList = {};
+//图片列表（可以替换成网络图片，图片越多效果越明显）
+var imgList = [];
 var settingsMods = {
   "#settingsPageNum": ["pixivbiu_searchPageNum", 5, "每组页数"],
   "#settingsIsOriPic": ["pixivbiu_displayIsOriPic", "off", "大图预览"],
@@ -271,7 +273,7 @@ $("#Search").click(function () {
 // 排行榜
 // # mode(r18榜单需登录): [day_r18, day_male_r18, day_female_r18, week_r18, week_r18g]
 
-function ranking_all(ranking_mode = "monthly", page = totalPage, date = null) {
+function ranking_all(ranking_mode = "monthly", page = 1, date = null) {
   $.ajax({
     url: "api/biu/get/rank/",
     type: "GET",
@@ -304,7 +306,8 @@ function showPics(
 ) {
   let rstHtml = "",
     kt;
-
+  // $(".progress").removeClass("invisible");
+  // $(".progress").css("width", "0%");
   if (c.rst && c.rst.data) {
     let i = 0;
     const data = c.rst.data;
@@ -327,7 +330,52 @@ function showPics(
         "https://i.pximg.net",
         settingsMods["#settingsRvrProxyUrl"][1]
       );
+      // 图片预加载
+      imgList.push(imgUrlCover);
+      //图片加载方法
+      function load(imgSrc, callback) {
+        var imgs = [];
+        var c = 0;
+        for (var i = 0; i < imgSrc.length; i++) {
+          imgs[i] = new Image();
+          imgs[i].src = imgSrc[i];
+          imgs[i].onload = function () {
+            c++;
+            if (callback) {
+              callback(c, imgSrc);
+            }
+          };
+        }
+        return imgs;
+      }
+      //需要操作这里的方法
+      function imgStatus(n, imgSrc) {
+        // 显示进度条
+        //加载进度百分比 (加载数量 / 图片数量 * 100)
+        var loadImgNum = parseInt(
+          parseFloat(n / imgSrc.length).toFixed(2) * 100
+        );
+        //做加载动画处理
+        console.log(loadImgNum);
+        $(".progress-bar").css("width", loadImgNum + "%");
+        //如果加载完成执行
+        if (n == imgSrc.length) {
+          console.log("ok");
+          $(".progress-bar").css("width", "100%");
+          // 输出
+          $("#img-items").html(rstHtml);
+          // 重载js文件
+          $.getScript(
+            "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+          );
+          // 加载完成隐藏进度条
+          // setTimeout(function () {
+          //   $(".progress").addClass("invisible");
+          // }, 1500);
+        }
+      }
 
+      // 合成文本
       rstHtml +=
         '<div class="col-sm-6 col-lg-3"><div class="card mb-2"><a href=""><img id="' +
         data[i]["id"] +
@@ -351,15 +399,8 @@ function showPics(
         data[i]["author"]["id"] +
         '"></h6> </p></a></div> </div> </div>';
     }
-
-    // 输出
-    $("#img-items").html(rstHtml);
+    //调用预加载
+    load(imgList, imgStatus);
     $(".img").hide();
-    // 重载js文件
-    $.getScript(
-      "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-    );
-
-    $(".progress-bar").animate("width", "100%");
   }
 }
