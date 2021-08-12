@@ -288,6 +288,26 @@
         </div>
       </div>
     </div>
+    <!-- 分页导航 -->
+
+    <nav class="visually-hidden" aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+            >Previous</a
+          >
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active" aria-current="page">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+
     <!-- 弹出层 -->
 
     <div
@@ -339,6 +359,20 @@
             <div class="col">
               <!-- 搜索 -->
               <form class="d-flex">
+                <select
+                  id="types-of"
+                  class="form-select form-select-sm"
+                  aria-label=".form-select-sm example"
+                  style="width: 110px"
+                >
+                  <option value="1" selected>搜索</option>
+                  <option value="2">用户搜索</option>
+                  <option value="3">作品ID</option>
+                  <option value="4">用户插画</option>
+                  <option value="5">漫画</option>
+                  <option value="6">收藏</option>
+                  <option value="7">关注列表</option>
+                </select>
                 <input
                   class="form-control me-2 search-text"
                   type="search"
@@ -347,7 +381,7 @@
                 />
                 <button
                   id="Search"
-                  class="btn btn-outline-success"
+                  class="btn btn-outline-success search"
                   type="submit"
                 >
                   Search
