@@ -328,87 +328,17 @@ function showPics(
         settingsMods["#settingsRvrProxyUrl"][1]
       );
 
-      // 图片预览内容
-      var extraText =
-        '<a target="_blank" href=".?code=%40u%3d' +
-        data[i]["author"]["id"] +
-        '%20-i">🔍作者插画</a> <a target="_blank" href=".?code=%40u%3d' +
-        data[i]["author"]["id"] +
-        '%20-c">🔍作者漫画</a>';
-
-      if (data[i]["all"]["meta_pages"].length > 0) {
-        extraText =
-          '<a target="_blank" href=".?code=%40w%3d' +
-          data[i]["id"] +
-          '">👀查看</a> ' +
-          extraText;
-      }
-
-      // 图片信息展示
-      var desText =
-        '<h2><a target="_blank" href="https://www.pixiv.net/artworks/' +
-        data[i]["id"] +
-        '">' +
-        data[i]["title"] +
-        '</a></h2><p>Created by <a target="_blank" href="https://www.pixiv.net/users/' +
-        data[i]["author"]["id"] +
-        '">' +
-        data[i]["author"]["name"] +
-        "</a> on " +
-        data[i]["created_time"] +
-        "<br>#收藏" +
-        data[i]["total_bookmarked"] +
-        " #浏览" +
-        data[i]["total_viewed"] +
-        "</p>";
-      //// 标签
-      var tagss = '<p style="max-width: 25%;">';
-      for (let kk = 0; kk < data[i]["tags"].length; kk++) {
-        tagss =
-          tagss +
-          '<a target="_blank" href=".?code=%40s%3d' +
-          escape(data[i]["tags"][kk]) +
-          ' -o">#' +
-          data[i]["tags"][kk] +
-          "</a> ";
-      }
-      desText = tagss + "</p>" + desText;
-      if (c["args"]["ops"]["method"] === "oneWork" && i !== 0) {
-        extra = "";
-        extraText = "";
-        desText = "";
-      }
-
-      // 最终结果
-      //   rstHtml +=
-      //     '<div class="col-sm-6 col-lg-4 mb-4" id="' +
-      //     data[i]["author"]["id"] +
-      //     '><div class="card">' +
-      //     '<img src="' +
-      //     imgUrlCover +
-      //     '" class="card-img-top" alt="' +
-      //     imgUrl +
-      //     '">' +
-      //     '<div class="card-body"><h5 class="card-title">' +
-      //     data[i]["author"]["title"] +
-      //     '</h5> <p class="card-text">' +
-      //     "This is a longer card with supporting text below as a natural" +
-      //     "lead-in to additional content. This content is a little bit" +
-      //     " longer." +
-      //     "</p> </div></div></div>";
-      // }
-
       rstHtml +=
-        '<div class="col-sm-6 col-lg-4"><div class="card mb-3"><a href=""><img id="' +
-        data[i]["author"]["id"] +
-        ' " loading ="lazy"src="' +
+        '<div class="col-sm-6 col-lg-3"><div class="card mb-2"><a href=""><img id="' +
+        data[i]["id"] +
+        ' " loading ="lazy" src="' +
         imgUrlCover +
         '"class="card-img-top" alt="' +
         data[i]["title"] +
         '" /></a><div class="card-body">' +
         ' <a href=""><h5 class="card-title">' +
         data[i]["title"] +
-        '</h5></a><p class="card-text">' +
+        '</h5></a><p class="card-text text-truncate">' +
         data[i]["caption"] +
         ' </p><a href="">' +
         '<p class="card-text"><img class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
@@ -418,7 +348,7 @@ function showPics(
         '<small class="text-muted float-end">' +
         data[i]["created_time"] +
         '</small><h6 class="card-subtitle mb-2 text-muted align-middle" id="' +
-        data[i][id] +
+        data[i]["author"]["id"] +
         '"></h6> </p></a></div> </div> </div>';
     }
 
@@ -427,11 +357,9 @@ function showPics(
     $(".img").hide();
     // 重载js文件
     $.getScript(
-      "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js",
-      function () {
-        newFun('"Checking new script"'); //这个函数是在new.js里面的，当点击click后运行这个函数
-      }
+      "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
     );
+
     $(".progress-bar").animate("width", "100%");
   }
 }
