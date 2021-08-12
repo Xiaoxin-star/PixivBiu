@@ -405,5 +405,6 @@ function showPics(
     // 输出
     $("#Card-img").html(rstHtml);
     $(".img").hide();
+    $(".progress-bar").animate("width", "100%");
   }
 }

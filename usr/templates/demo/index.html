@@ -54,7 +54,7 @@
     <!-- 导航 -->
     <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
       <div class="container">
-        <a class="navbar-brand text-light" href="#">Navbar</a>
+        <a class="navbar-brand text-light" href="#">PIXIVBIU@2.1.0</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -252,7 +252,16 @@
         </div>
       </div>
     </nav>
-
+    <!-- 遮罩层 -->
+    <div class="progress position-absolute">
+      <div
+        class="progress-bar progress-bar-striped"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
+    </div>
     <!-- 主题内容 -->
     <div class="main">
       <div class="container">
@@ -263,9 +272,9 @@
       </div>
     </div>
     <!-- 尾部 -->
-    <div id="footer" class="bg-dark">
+    <div id="footer" class="bg-dark p-5">
       <div class="row container">
-        <div class="col">
+        <div class="col offset-1">
           <h3 class="text-light">PIXIVBIU@2.1.0</h3>
           <p class="text-light">
             一款不错的 Pixiv 搜索辅助工具。 基于 Python@3.7(+) 构建。
@@ -320,7 +329,7 @@
       aria-labelledby="offcanvasBottomLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasBottomLabel">搜索</h5>
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">搜索设置</h5>
         <button
           type="button"
           class="btn-close text-reset"
@@ -331,34 +340,6 @@
       <div class="offcanvas-body small">
         <div class="container">
           <div class="row">
-            <div class="col">
-              <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >搜索类型</label
-                >
-                <select class="form-select mode" id="inputGroupSelect01">
-                  <option selected value="partial_match_for_tags">
-                    标签部分一致
-                  </option>
-                  <option value="exact_match_for_tags">标签完全一致</option>
-                  <option value="title_and_caption">标题说明文</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >排序方式</label
-                >
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected value="date_desc">日期降序</option>
-                  <option value="date_asc">日期升序</option>
-                  <option value="popular_desc">会员排序</option>
-                </select>
-              </div>
-            </div>
-
             <div class="col">
               <!-- 搜索 -->
               <form class="d-flex">
@@ -390,6 +371,68 @@
                   Search
                 </button>
               </form>
+            </div>
+          </div>
+          <div class="row p-2">
+            <div class="col">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >每组页数</span
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                  value="5"
+                />
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >大图预览</label
+                >
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected value="on">开启</option>
+                  <option selected value="off">关闭</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >搜索模式</label
+                >
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected value="tag">匹配部分标签</option>
+                  <option value="otag">全标签</option>
+                  <option value="des">标题或描述</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >排序模式</label
+                >
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected value="1">按收藏数排序</option>
+                  <option value="2">按人气(浏览数)排序</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >更多排序</label
+                >
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected value="on">开启</option>
+                  <option selected value="off">关闭</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
