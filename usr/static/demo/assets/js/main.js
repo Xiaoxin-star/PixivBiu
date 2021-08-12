@@ -15,7 +15,8 @@ var settingsMods = {
     "图片反代地址",
   ],
 };
-
+// 搜索页码
+var tatalpage = $(".tatalpage").val();
 // 推荐插画
 // content_type: [illust, manga]
 function recommend(type = "illust") {
@@ -24,7 +25,7 @@ function recommend(type = "illust") {
     type: "GET",
     data: {
       type: type,
-      totalPage: 5,
+      totalPage: totalPage,
       groupIndex: 0,
       sortMode: 0,
       isSort: 0,
@@ -65,13 +66,12 @@ $("#types-of option").click(function () {
 
 // 搜索
 $("#Search").click(function () {
+  // 搜索关键字
   var search_text = $(".search-text").val();
-  var tatalpage = $(".tatalpage").val();
-  console.log(tatalpage);
+
+  // 类型
   types_of = $("#types-of").val();
   // $(".search-text").val(null);
-  // var mode = $(".mode").val();
-
   switch (Number(types_of)) {
     case 1:
       // 搜索
@@ -82,7 +82,7 @@ $("#Search").click(function () {
         data: {
           kt: search_text,
           mode: "tag",
-          totalPage: 1,
+          totalPage: tatalpage,
           isCache: 0,
           groupIndex: 0,
           sortMode: 0,
@@ -110,7 +110,7 @@ $("#Search").click(function () {
         type: "GET",
         data: {
           kt: search_text,
-          totalPage: 1,
+          totalPage: tatalpage,
           groupIndex: 0,
         },
         success: function (rep) {
@@ -191,7 +191,7 @@ $("#Search").click(function () {
           type: "manga",
           sortMode: 0,
           isSort: 0,
-          totalPage: 5,
+          totalPage: tatalpage,
           groupIndex: 0,
         },
         success: function (rep) {
@@ -247,7 +247,7 @@ $("#Search").click(function () {
         data: {
           userID: search_text,
           restrict: "public",
-          totalPage: 5,
+          totalPage: tatalpage,
           groupIndex: 0,
         },
         success: function (rep) {
@@ -271,8 +271,8 @@ $("#Search").click(function () {
 // 排行榜
 // # mode(r18榜单需登录): [day_r18, day_male_r18, day_female_r18, week_r18, week_r18g]
 
-function ranking_all(ranking_mode = "monthly", page = 1, date = null) {
-  $.ajax({
+function ranking_all(ranking_mode = "monthly", page = totalPage, date = null) {
+a  $.jax({
     url: "api/biu/get/rank/",
     type: "GET",
     data: {
