@@ -16,38 +16,40 @@ var settingsMods = {
   ],
 };
 
-// 加载首页推荐插画
+// 推荐插画
 // content_type: [illust, manga]
-$.ajax({
-  url: "api/biu/get/recommend/",
-  type: "GET",
-  data: {
-    type: "illust",
-    totalPage: 5,
-    groupIndex: 0,
-    sortMode: 0,
-    isSort: 0,
-  },
-  success: function (rep) {
-    rep = $.parseJSON(JSON.stringify(rep));
-    if (rep.code) {
-      tmpPageData = rep.msg;
-      showPics("排行榜@", ["main", "header"]);
-    } else {
+function recommend(type = "illust") {
+  $.ajax({
+    url: "api/biu/get/recommend/",
+    type: "GET",
+    data: {
+      type: type,
+      totalPage: 5,
+      groupIndex: 0,
+      sortMode: 0,
+      isSort: 0,
+    },
+    success: function (rep) {
+      rep = $.parseJSON(JSON.stringify(rep));
+      if (rep.code) {
+        tmpPageData = rep.msg;
+        showPics("排行榜@", ["main", "header"]);
+      } else {
+        showPics("Error :<", ["main"], []);
+      }
+    },
+    error: function (rep) {
       showPics("Error :<", ["main"], []);
-    }
-  },
-  error: function (rep) {
-    showPics("Error :<", ["main"], []);
-  },
-});
-// 判断搜索选项
+    },
+  });
+}
+
 $("#types-of option").click(function () {
   types_of = $("#types-of").val();
+
   switch (Number(types_of)) {
     case 1:
       $(".search-text").attr("placeholder", "请输入搜索关键字");
-      search();
       break;
     case 2:
       $(".search-text").attr("placeholder", "请输入用户名");
@@ -60,209 +62,209 @@ $("#types-of option").click(function () {
       break;
   }
 });
-// 搜索
-function search(text) {
-  $("#Search").click(function () {
-    var search_text = $(".search-text").val();
-    // $(".search-text").val(null);
-    // var mode = $(".mode").val();
-    console.log(search_text);
-    switch (Number(types_of)) {
-      case 1:
-        // 搜索
-        // /api/biu/search/works/?kt=幼女&mode=tag&totalPage=5&isCache=1&groupIndex=0&sortMode=0
-        $.ajax({
-          url: "api/biu/search/works/",
-          type: "GET",
-          data: {
-            kt: search_text,
-            mode: "tag",
-            totalPage: 1,
-            isCache: 0,
-            groupIndex: 0,
-            sortMode: 0,
-          },
-          success: function (rep) {
-            console.log(rep);
-            rep = $.parseJSON(JSON.stringify(rep));
-            if (rep.code) {
-              tmpPageData = rep.msg;
-              showPics("排行榜@", ["main", "header"]);
-            } else {
-              showPics("Error :<", ["main"], []);
-            }
-          },
-          error: function (rep) {
-            showPics("Error :<", ["main"], []);
-          },
-        });
-        break;
-      case 2:
-        // 用户搜索
-        ///api/biu/search/users/?kt={user_name}&totalPage=5&groupIndex=0
-        $.ajax({
-          url: "api/biu/search/users/",
-          type: "GET",
-          data: {
-            kt: search_text,
-            totalPage: 1,
-            groupIndex: 0,
-          },
-          success: function (rep) {
-            console.log(rep);
-            rep = $.parseJSON(JSON.stringify(rep));
-            if (rep.code) {
-              tmpPageData = rep.msg;
-              showPics("排行榜@", ["main", "header"]);
-            } else {
-              showPics("Error :<", ["main"], []);
-            }
-          },
-          error: function (rep) {
-            showPics("Error :<", ["main"], []);
-          },
-        });
-        break;
-      case 3:
-        // 指定作品ID
-        ///api/biu/get/onework/?workID=%7Bwork_id%7D
-        $.ajax({
-          url: "api/biu/get/onework/",
-          type: "GET",
-          data: {
-            workID: search_text,
-          },
-          success: function (rep) {
-            console.log(rep);
-            rep = $.parseJSON(JSON.stringify(rep));
-            if (rep.code) {
-              tmpPageData = rep.msg;
-              showPics("排行榜@", ["main", "header"]);
-            } else {
-              showPics("Error :<", ["main"], []);
-            }
-          },
-          error: function (rep) {
-            showPics("Error :<", ["main"], []);
-          },
-        });
-        break;
-      case 4:
-        // 用户插画
-        ///api/biu/get/idworks/?userID=%7Buser_id%7D&type=illust&sortMode=0&isSort=0&totalPage=5&groupIndex=0
-        $.ajax({
-          url: "api/biu/get/idworks/",
-          type: "GET",
-          data: {
-            userID: search_text,
-            type: "illust",
-            sortMode: 0,
-            isSort: 0,
-            totalPage: 5,
-            groupIndex: 0,
-          },
-          success: function (rep) {
-            rep = $.parseJSON(JSON.stringify(rep));
-            if (rep.code) {
-              tmpPageData = rep.msg;
-              showPics("排行榜@", ["main", "header"]);
-            } else {
-              showPics("Error :<", ["main"], []);
-            }
-          },
-          error: function (rep) {
-            showPics("Error :<", ["main"], []);
-          },
-        });
-        break;
-      case 5:
-        // 漫画
-        ///api/biu/get/idworks/?userID=%7Buser_id%7D&type=manga&sortMode=0&isSort=0&totalPage=5&groupIndex=0
-        $.ajax({
-          url: "api/biu/get/idworks/",
-          type: "GET",
-          data: {
-            userID: search_text,
-            type: "manga",
-            sortMode: 0,
-            isSort: 0,
-            totalPage: 5,
-            groupIndex: 0,
-          },
-          success: function (rep) {
-            console.log(rep);
-            rep = $.parseJSON(JSON.stringify(rep));
-            if (rep.code) {
-              tmpPageData = rep.msg;
-              showPics("排行榜@", ["main", "header"]);
-            } else {
-              showPics("Error :<", ["main"], []);
-            }
-          },
-          error: function (rep) {
-            showPics("Error :<", ["main"], []);
-          },
-        });
-        break;
-      case 6:
-        // 收藏
-        ///api/biu/get/idmarks/?userID=%7Buser_id%7D&restrict=public&sortMode=0&isSort=0&groupIndex=0&tmp=0%400
-        $.ajax({
-          url: "api/biu/get/idmarks/",
-          type: "GET",
-          data: {
-            userID: search_text,
-            restrict: "public",
-            sortMode: 0,
-            isSort: 0,
-            groupIndex: 0,
-          },
-          success: function (rep) {
-            console.log(rep);
-            rep = $.parseJSON(JSON.stringify(rep));
-            if (rep.code) {
-              tmpPageData = rep.msg;
-              showPics("排行榜@", ["main", "header"]);
-            } else {
-              showPics("Error :<", ["main"], []);
-            }
-          },
-          error: function (rep) {
-            showPics("Error :<", ["main"], []);
-          },
-        });
-        break;
 
-      case 7:
-        // 关注列表
-        ///api/biu/get/idfollowing/?userID=%7Buser_id%7D&restrict=public&totalPage=5&groupIndex=0
-        $.ajax({
-          url: "api/biu/get/idfollowing/",
-          type: "GET",
-          data: {
-            userID: search_text,
-            restrict: "public",
-            totalPage: 5,
-            groupIndex: 0,
-          },
-          success: function (rep) {
-            console.log(rep);
-            rep = $.parseJSON(JSON.stringify(rep));
-            if (rep.code) {
-              tmpPageData = rep.msg;
-              showPics("排行榜@", ["main", "header"]);
-            } else {
-              showPics("Error :<", ["main"], []);
-            }
-          },
-          error: function (rep) {
+// 搜索
+$("#Search").click(function () {
+  var search_text = $(".search-text").val();
+  types_of = $("#types-of").val();
+  // $(".search-text").val(null);
+  // var mode = $(".mode").val();
+  console.log(Number(types_of));
+  switch (Number(types_of)) {
+    case 1:
+      // 搜索
+      // /api/biu/search/works/?kt=幼女&mode=tag&totalPage=5&isCache=1&groupIndex=0&sortMode=0
+      $.ajax({
+        url: "api/biu/search/works/",
+        type: "GET",
+        data: {
+          kt: search_text,
+          mode: "tag",
+          totalPage: 1,
+          isCache: 0,
+          groupIndex: 0,
+          sortMode: 0,
+        },
+        success: function (rep) {
+          console.log(rep);
+          rep = $.parseJSON(JSON.stringify(rep));
+          if (rep.code) {
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
+          } else {
             showPics("Error :<", ["main"], []);
-          },
-        });
-        break;
-    }
-  });
-}
+          }
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
+      break;
+    case 2:
+      // 用户搜索
+      ///api/biu/search/users/?kt={user_name}&totalPage=5&groupIndex=0
+      $.ajax({
+        url: "api/biu/search/users/",
+        type: "GET",
+        data: {
+          kt: search_text,
+          totalPage: 1,
+          groupIndex: 0,
+        },
+        success: function (rep) {
+          console.log(rep);
+          rep = $.parseJSON(JSON.stringify(rep));
+          if (rep.code) {
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
+          } else {
+            showPics("Error :<", ["main"], []);
+          }
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
+      break;
+    case 3:
+      // 指定作品ID
+      ///api/biu/get/onework/?workID=%7Bwork_id%7D
+      $.ajax({
+        url: "api/biu/get/onework/",
+        type: "GET",
+        data: {
+          workID: search_text,
+        },
+        success: function (rep) {
+          console.log(rep);
+          rep = $.parseJSON(JSON.stringify(rep));
+          if (rep.code) {
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
+          } else {
+            showPics("Error :<", ["main"], []);
+          }
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
+      break;
+    case 4:
+      // 用户插画
+      ///api/biu/get/idworks/?userID=%7Buser_id%7D&type=illust&sortMode=0&isSort=0&totalPage=5&groupIndex=0
+      $.ajax({
+        url: "api/biu/get/idworks/",
+        type: "GET",
+        data: {
+          userID: search_text,
+          type: "illust",
+          sortMode: 0,
+          isSort: 0,
+          totalPage: 5,
+          groupIndex: 0,
+        },
+        success: function (rep) {
+          rep = $.parseJSON(JSON.stringify(rep));
+          if (rep.code) {
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
+          } else {
+            showPics("Error :<", ["main"], []);
+          }
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
+      break;
+    case 5:
+      // 漫画
+      ///api/biu/get/idworks/?userID=%7Buser_id%7D&type=manga&sortMode=0&isSort=0&totalPage=5&groupIndex=0
+      $.ajax({
+        url: "api/biu/get/idworks/",
+        type: "GET",
+        data: {
+          userID: search_text,
+          type: "manga",
+          sortMode: 0,
+          isSort: 0,
+          totalPage: 5,
+          groupIndex: 0,
+        },
+        success: function (rep) {
+          console.log(rep);
+          rep = $.parseJSON(JSON.stringify(rep));
+          if (rep.code) {
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
+          } else {
+            showPics("Error :<", ["main"], []);
+          }
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
+      break;
+    case 6:
+      // 收藏
+      ///api/biu/get/idmarks/?userID=%7Buser_id%7D&restrict=public&sortMode=0&isSort=0&groupIndex=0&tmp=0%400
+      $.ajax({
+        url: "api/biu/get/idmarks/",
+        type: "GET",
+        data: {
+          userID: search_text,
+          restrict: "public",
+          sortMode: 0,
+          isSort: 0,
+          groupIndex: 0,
+        },
+        success: function (rep) {
+          console.log(rep);
+          rep = $.parseJSON(JSON.stringify(rep));
+          if (rep.code) {
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
+          } else {
+            showPics("Error :<", ["main"], []);
+          }
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
+      break;
+
+    case 7:
+      // 关注列表
+      ///api/biu/get/idfollowing/?userID=%7Buser_id%7D&restrict=public&totalPage=5&groupIndex=0
+      $.ajax({
+        url: "api/biu/get/idfollowing/",
+        type: "GET",
+        data: {
+          userID: search_text,
+          restrict: "public",
+          totalPage: 5,
+          groupIndex: 0,
+        },
+        success: function (rep) {
+          console.log(rep);
+          rep = $.parseJSON(JSON.stringify(rep));
+          if (rep.code) {
+            tmpPageData = rep.msg;
+            showPics("排行榜@", ["main", "header"]);
+          } else {
+            showPics("Error :<", ["main"], []);
+          }
+        },
+        error: function (rep) {
+          showPics("Error :<", ["main"], []);
+        },
+      });
+      break;
+  }
+});
 
 // 排行榜
 // # mode(r18榜单需登录): [day_r18, day_male_r18, day_female_r18, week_r18, week_r18g]
@@ -292,7 +294,7 @@ function ranking_all(ranking_mode = "monthly", page = 1, date = null) {
     },
   });
 }
-// 显示内容
+
 function showPics(
   title = "",
   reLoadList = ["main", "header"],

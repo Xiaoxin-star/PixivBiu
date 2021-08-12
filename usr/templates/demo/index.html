@@ -20,13 +20,9 @@
       #header {
         background-color: #1f2224;
       }
-      #header a {
-        color: #fff;
-        text-decoration: none;
-      }
 
-      #footer a {
-        color: #fff;
+      a {
+        color: rgb(0, 0, 0);
         text-decoration: none;
       }
       #main #Carousel img {
@@ -58,7 +54,7 @@
     <!-- 导航 -->
     <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand text-light" href="#">Navbar</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -73,21 +69,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./">首页</a>
+              <a
+                class="nav-link active text-light"
+                aria-current="page"
+                href="./"
+                >首页</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript:ranking_all('week_rookie')"
+              <a class="nav-link text-light" href="javascript: recommend()"
                 >插画</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript:ranking_all('week_rookie')"
+              <a
+                class="nav-link text-light"
+                href="javascript: recommend('manga')"
                 >漫画</a
               >
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                class="nav-link text-light dropdown-toggle"
                 href="#"
                 id="navbarDropdown"
                 role="button"
@@ -108,14 +111,14 @@
                   <a
                     class="dropdown-item"
                     href="javascript:ranking_all('day_male_r18')"
-                    >男性R18每日</a
+                    >女性R18每日</a
                   >
                 </li>
                 <li>
                   <a
                     class="dropdown-item"
                     href="javascript:ranking_all('day_female_r18')"
-                    >女性R18每日</a
+                    >男性R18每日</a
                   >
                 </li>
                 <li>
@@ -136,7 +139,7 @@
             </li>
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                class="nav-link dropdown-toggle text-light"
                 href="#"
                 id="navbarDropdown"
                 role="button"
@@ -199,7 +202,7 @@
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasBottom"
                 aria-controls="offcanvasBottom"
-                class="nav-link"
+                class="nav-link text-light"
                 href="#"
                 >搜索</a
               >
@@ -209,7 +212,7 @@
           <ul class="nav justify-content-end">
             <li class="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                class="nav-link dropdown-toggle text-light"
                 href="#"
                 id="navbarDropdown"
                 role="button"
@@ -261,7 +264,7 @@
     </div>
     <!-- 尾部 -->
     <div id="footer" class="bg-dark">
-      <div class="row">
+      <div class="row container">
         <div class="col">
           <h3 class="text-light">PIXIVBIU@2.1.0</h3>
           <p class="text-light">
@@ -382,7 +385,7 @@
                 <button
                   id="Search"
                   class="btn btn-outline-success search"
-                  type="submit"
+                  type="button"
                 >
                   Search
                 </button>
@@ -393,6 +396,15 @@
       </div>
     </div>
 
+    <!-- 返回顶部 -->
+    <div class="Back-to-top fixed-bottom">
+      <button
+        type="button"
+        class="btn m-2 btn-primary float-end bi bi-arrow-up-square-fill"
+      >
+        <a href="#header" style="color: #fff">返回顶部</a>
+      </button>
+    </div>
     <script src="static/demo/assets/js/jquery.min.js"></script>
     <script src="static/demo/assets/js/bootstrap.min.js"></script>
     <script src="static/demo/assets/js/chromagallery.pkgd.min.js"></script>
@@ -405,6 +417,7 @@
         dof: true,
         screenOpacity: 0.8,
       });
+      recommend();
     </script>
   </body>
 </html>
