@@ -380,53 +380,58 @@ function showPics(
       }
 
       // 最终结果
-      //   rstHtml +=
-      //     '<div class="col-sm-6 col-lg-4 mb-4" id="' +
-      //     data[i]["author"]["id"] +
-      //     '><div class="card">' +
-      //     '<img src="' +
-      //     imgUrlCover +
-      //     '" class="card-img-top" alt="' +
-      //     imgUrl +
-      //     '">' +
-      //     '<div class="card-body"><h5 class="card-title">' +
-      //     data[i]["author"]["title"] +
-      //     '</h5> <p class="card-text">' +
-      //     "This is a longer card with supporting text below as a natural" +
-      //     "lead-in to additional content. This content is a little bit" +
-      //     " longer." +
-      //     "</p> </div></div></div>";
-      // }
-
       rstHtml +=
-        '<div class="col-sm-6 col-lg-4 mb-4">' +
-        '<div class="card mb-3">' +
+        '<div class="col-sm-6 col-lg-4 mb-4" id="' +
+        data[i]["author"]["id"] +
+        '><div class="card">' +
         '<img src="' +
-        imgUrlCover;
-      '" class="card-img-top" alt="..." />' +
-        '<div class="card-body">' +
-        '<h5 class="card-title">Card title</h5>' +
-        '<p class="card-text">' +
-        " This is a wider card with supporting text below as a natural lead-in" +
-        " to additional content. This content is a little bit longer." +
-        " </p>" +
-        ' <p class="card-text">' +
-        '   <small class="text-muted">Last updated 3 mins ago</small>' +
-        "</p>" +
-        "</div>" +
-        "</div></div>";
+        imgUrlCover +
+        '" class="card-img-top" alt="' +
+        imgUrl +
+        '">' +
+        '<div class="card-body"><h5 class="card-title">' +
+        data[i]["author"]["title"] +
+        '</h5> <p class="card-text">' +
+        "This is a longer card with supporting text below as a natural" +
+        "lead-in to additional content. This content is a little bit" +
+        " longer." +
+        "</p> </div></div></div>";
     }
 
+    //   rstHtml +=
+    //     '<div class="col-sm-6 col-lg-4"><div class="card mb-3"><a href=""><img id="' +
+    //     data[i]["author"]["id"] +
+    //     ' " loading ="lazy"src="' +
+    //     imgUrlCover +
+    //     '"class="card-img-top" alt="' +
+    //     data[i]["title"] +
+    //     '" /></a><div class="card-body">' +
+    //     ' <a href=""><h5 class="card-title">' +
+    //     data[i]["title"] +
+    //     '</h5></a><p class="card-text">' +
+    //     data[i]["caption"] +
+    //     ' </p><a href="">' +
+    //     '<p class="card-text"><img class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
+    //     imgUrl +
+    //     '"alt="Avatar" />' +
+    //     data[i]["author"]["account"] +
+    //     '<small class="text-muted float-end">' +
+    //     data[i]["created_time"] +
+    //     '</small><h6 class="card-subtitle mb-2 text-muted align-middle" id="' +
+    //     data[i][id] +
+    //     '"></h6> </p></a></div> </div> </div>';
+    // }
+
     // 输出
-    // $("#img-items").html(rstHtml);
+    $("#img-items").html(rstHtml);
     $(".img").hide();
     // 重载js文件
-    $.getScript(
-      "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js",
-      function () {
-        newFun('"Checking new script"'); //这个函数是在new.js里面的，当点击click后运行这个函数
-      }
-    );
+    // $.getScript(
+    //   "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    //   function () {
+    //     newFun('"Checking new script"'); //这个函数是在new.js里面的，当点击click后运行这个函数
+    //   }
+    // );
     $(".progress-bar").animate("width", "100%");
   }
 }

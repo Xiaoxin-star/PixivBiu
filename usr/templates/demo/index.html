@@ -1,500 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link type="favicon" rel="shortcut icon" href="static/pixiv.png" />
 
-    <link href="/static/demo/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/static/demo/assets/css/chromagallery.min.css"
-    />
-    <title>PixivBiu</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link type="favicon" rel="shortcut icon" href="static/pixiv.png" />
 
-    <style>
-      #header {
-        background-color: #1f2224;
-      }
+  <link href="/static/demo/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/static/demo/assets/css/chromagallery.min.css" />
+  <title>PixivBiu</title>
 
-      a {
-        color: rgb(0, 0, 0);
-        text-decoration: none;
-      }
-      #main #Carousel img {
-        height: 600px;
-      }
-      body {
-        background-color: #f2f2f2;
-      }
-      .card-group {
-        box-sizing: border-box;
-        margin: 10px 0px 10px 0px;
-      }
-      .card-group a {
-        text-decoration: none;
-      }
-      .card-group .card-title {
-        height: 70px;
-      }
-      .card-group .card {
-        height: 540px;
-      }
-      .card-group .card img {
-        object-fit: cover;
-        height: 400px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- 导航 -->
-    <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
-      <div class="container">
-        <a class="navbar-brand text-light" href="#">PIXIVBIU@2.1.0</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a
-                class="nav-link active text-light"
-                aria-current="page"
-                href="./"
-                >首页</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="javascript: recommend()"
-                >插画</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link text-light"
-                href="javascript: recommend('manga')"
-                >漫画</a
-              >
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link text-light dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                R18
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('day_r18')"
-                    >R18每日</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('day_male_r18')"
-                    >女性R18每日</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('day_female_r18')"
-                    >男性R18每日</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('week_r18')"
-                    >每周R18</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('week_r18g')"
-                    >每周r18g</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle text-light"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                排行榜
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('week_original')"
-                    >原创</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="javascript:ranking_all('day')"
-                    >每日</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="javascript:ranking_all('week')"
-                    >每周</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('month')"
-                    >每月</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('day_male')"
-                    >男性热门</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('day_female')"
-                    >女性热门</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:ranking_all('week_rookie')"
-                    >新人作品</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasBottom"
-                aria-controls="offcanvasBottom"
-                class="nav-link text-light"
-                href="#"
-                >搜索</a
-              >
-            </li>
-          </ul>
-          <!-- 右侧个人中心 -->
-          <ul class="nav justify-content-end">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle text-light"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://img0.baidu.com/it/u=3353211517,995971476&fm=26&fmt=auto&gp=0.jpg"
-                  class="rounded-circle"
-                  alt="..."
-                  style="width: 40px"
-                />
+  <style>
+    #header {
+      background-color: #1f2224;
+    }
 
-                个人中心
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">收藏@公开</a></li>
-                <li><a class="dropdown-item" href="#">收藏@隐藏</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#">关注@公开</a></li>
-                <li><a class="dropdown-item" href="#">关注@隐藏</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#">新作@公开</a></li>
-                <li><a class="dropdown-item" href="#">新作@隐藏</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#">推荐@插画</a></li>
-                <li><a class="dropdown-item" href="#">推荐@漫画</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- 遮罩层 -->
-    <div class="progress position-absolute">
-      <div
-        class="progress-bar progress-bar-striped"
-        role="progressbar"
-        aria-valuenow="0"
-        aria-valuemin="0"
-        aria-valuemax="100"
-      ></div>
-    </div>
-    <!-- 主题内容 -->
-    <div class="main">
-      <div class="container">
-        <div
-          id="Card-img"
-          class="row row-cols-sm-1 row-cols-xs-2 row-cols-md-3 row-cols-lg-4"
-        ></div>
+    a {
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+    }
+
+    #main #Carousel img {
+      height: 600px;
+    }
+
+    body {
+      background-color: #f2f2f2;
+    }
+
+    .card-group {
+      box-sizing: border-box;
+      margin: 10px 0px 10px 0px;
+    }
+
+    .card-group a {
+      text-decoration: none;
+    }
+
+    .card-group .card-title {
+      height: 70px;
+    }
+
+    .card-group .card {
+      height: 540px;
+    }
+
+    .card-group .card img {
+      object-fit: cover;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航 -->
+  <nav id="header" class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container">
+      <a class="navbar-brand text-light" href="#">PIXIVBIU@2.1.0</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="./">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="javascript: recommend()">插画</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="javascript: recommend('manga')">漫画</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              R18
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('day_r18')">R18每日</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('day_male_r18')">女性R18每日</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('day_female_r18')">男性R18每日</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('week_r18')">每周R18</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('week_r18g')">每周r18g</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              排行榜
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('week_original')">原创</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('day')">每日</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('week')">每周</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('month')">每月</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('day_male')">男性热门</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('day_female')">女性热门</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:ranking_all('week_rookie')">新人作品</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+              aria-controls="offcanvasBottom" class="nav-link text-light" href="#">搜索</a>
+          </li>
+        </ul>
+        <!-- 右侧个人中心 -->
+        <ul class="nav justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://img0.baidu.com/it/u=3353211517,995971476&fm=26&fmt=auto&gp=0.jpg" class="rounded-circle"
+                alt="..." style="width: 40px" />
+
+              个人中心
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">收藏@公开</a></li>
+              <li><a class="dropdown-item" href="#">收藏@隐藏</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">关注@公开</a></li>
+              <li><a class="dropdown-item" href="#">关注@隐藏</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">新作@公开</a></li>
+              <li><a class="dropdown-item" href="#">新作@隐藏</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">推荐@插画</a></li>
+              <li><a class="dropdown-item" href="#">推荐@漫画</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
-    <main class="container py-5">
-      <h1>Bootstrap and Masonry</h1>
-      <p class="lead">
-        Integrate <a href="https://masonry.desandro.com/">Masonry</a> with the
-        Bootstrap grid system and cards component.
-      </p>
+  </nav>
+  <!-- 遮罩层 -->
+  <div class="progress position-absolute">
+    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+      aria-valuemax="100"></div>
+  </div>
+  <!-- 主题内容 -->
+  <div class="main">
+    <div class="container">
+      <div id="Card-img" class="row row-cols-sm-1 row-cols-xs-2 row-cols-md-3 row-cols-lg-4"></div>
+    </div>
+  </div>
 
-      <p>
-        Masonry is not included in Bootstrap. Add it by including the JavaScript
-        plugin manually, or using a CDN like so:
-      </p>
+  <main class="container py-5">
+    <h1>Bootstrap and Masonry</h1>
+    <p class="lead">
+      Integrate <a href="https://masonry.desandro.com/">Masonry</a> with the
+      Bootstrap grid system and cards component.
+    </p>
 
-      <pre><code>
+    <p>
+      Masonry is not included in Bootstrap. Add it by including the JavaScript
+      plugin manually, or using a CDN like so:
+    </p>
+
+    <pre><code>
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js&quot; integrity=&quot;sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D&quot; crossorigin=&quot;anonymous&quot; async&gt;&lt;/script&gt;
   </code></pre>
 
-      <p>
-        By adding <code>data-masonry='{"percentPosition": true }'</code> to the
-        <code>.row</code> wrapper, we can combine the powers of Bootstrap's
-        responsive grid and Masonry's positioning.
-      </p>
+    <p>
+      By adding <code>data-masonry='{"percentPosition": true }'</code> to the
+      <code>.row</code> wrapper, we can combine the powers of Bootstrap's
+      responsive grid and Masonry's positioning.
+    </p>
 
-      <hr class="my-5" />
+    <hr class="my-5" />
 
-      <div
-        id="img-items"
-        class="row"
-        data-masonry='{"percentPosition": true }'
-      ></div>
-    </main>
-    <!-- 尾部 -->
-    <div id="footer" class="bg-dark p-5">
-      <div class="row container">
-        <div class="col offset-1">
-          <h3 class="text-light">PIXIVBIU@2.1.0</h3>
-          <p class="text-light">
-            一款不错的 Pixiv 搜索辅助工具。 基于 Python@3.7(+) 构建。
-          </p>
-          <h3 class="text-light">一些链接</h3>
-          <p>
-            <a class="text-white-50" href="">© 铜锣烧计划.</a>
-          </p>
-          <p>
-            <a class="text-white-50" href="">Created by Trii Hisa.</a>
-          </p>
-          <p>
-            <a class="text-white-50" href="">Design by HTML5 UP.</a>
-          </p>
-        </div>
-        <div class="col">
-          <h3 class="text-light">其他</h3>
-          <p class="text-light">如何使用? & 反馈</p>
-          <p class="text-white-50">
-            If you feel your rights have been violated, please contact me
-            through the information above. Sorry a lot.
-          </p>
+    <div id="img-items" class="row" data-masonry='{"percentPosition": true }'>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card mb-3">
+          <a href=""><img id="85233145" loading ="lazy"
+              src="https://i.pixiv.cat/c/360x360_70/img-master/img/2020/10/25/18/10/03/85233145_p0_square1200.jpg"
+              class="card-img-top" alt="バニーカーマちゃん" /></a>
+          <div class="card-body">
+            <a href="">
+              <h5 class="card-title">バニーカーマちゃん</h5>
+            </a>
+            <p class="card-text">2018 よろしくお願いしますー!!!!</p>
+            <a href="">
+              <p class="card-text">
+                <img class="rounded-circle" width="20px" height="20px"
+                  loading ="lazy"
+                  src="https://i.pixiv.cat/user-profile/img/2020/04/12/16/44/29/18315415_903bd3e07169ee9ef87810c5cdbade89_170.jpg"
+                  alt="Avatar" />
+                はりもじ
+                <small class="text-muted float-end">2020-10-25</small>
+                <h6 class="card-subtitle mb-2 text-muted align-middle" id="85233145">
+                </h6>
+              </p>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-    <!-- 分页导航 -->
-    <nav class="visually-hidden" aria-label="...">
-      <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-            >Previous</a
-          >
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active" aria-current="page">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- 弹出层 -->
-    <div
-      class="offcanvas offcanvas-bottom"
-      tabindex="-1"
-      id="offcanvasBottom"
-      aria-labelledby="offcanvasBottomLabel"
-    >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasBottomLabel">搜索设置</h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
+  </main>
+  <!-- 尾部 -->
+  <div id="footer" class="bg-dark p-5">
+    <div class="row container">
+      <div class="col offset-1">
+        <h3 class="text-light">PIXIVBIU@2.1.0</h3>
+        <p class="text-light">
+          一款不错的 Pixiv 搜索辅助工具。 基于 Python@3.7(+) 构建。
+        </p>
+        <h3 class="text-light">一些链接</h3>
+        <p>
+          <a class="text-white-50" href="">© 铜锣烧计划.</a>
+        </p>
+        <p>
+          <a class="text-white-50" href="">Created by Trii Hisa.</a>
+        </p>
+        <p>
+          <a class="text-white-50" href="">Design by HTML5 UP.</a>
+        </p>
       </div>
-      <div class="offcanvas-body small">
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <!-- 搜索 -->
-              <form class="d-flex">
-                <select
-                  id="types-of"
-                  class="form-select form-select-sm"
-                  aria-label=".form-select-sm example"
-                  style="width: 110px"
-                >
-                  <option value="1" selected>搜索</option>
-                  <option value="2">用户ID</option>
-                  <option value="3">作品ID</option>
-                  <option value="4">插画</option>
-                  <option value="5">漫画</option>
-                  <option value="6">收藏</option>
-                  <option value="7">关注列表</option>
-                </select>
-                <input
-                  class="form-control me-2 search-text"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button
-                  id="Search"
-                  class="btn btn-outline-success search"
-                  type="button"
-                >
-                  Search
-                </button>
-              </form>
+      <div class="col">
+        <h3 class="text-light">其他</h3>
+        <p class="text-light">如何使用? & 反馈</p>
+        <p class="text-white-50">
+          If you feel your rights have been violated, please contact me
+          through the information above. Sorry a lot.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- 分页导航 -->
+  <nav class="visually-hidden" aria-label="...">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active" aria-current="page">
+        <a class="page-link" href="#">2</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- 弹出层 -->
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasBottomLabel">搜索设置</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <!-- 搜索 -->
+            <form class="d-flex">
+              <select id="types-of" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                style="width: 110px">
+                <option value="1" selected>搜索</option>
+                <option value="2">用户ID</option>
+                <option value="3">作品ID</option>
+                <option value="4">插画</option>
+                <option value="5">漫画</option>
+                <option value="6">收藏</option>
+                <option value="7">关注列表</option>
+              </select>
+              <input class="form-control me-2 search-text" type="search" placeholder="Search" aria-label="Search" />
+              <button id="Search" class="btn btn-outline-success search" type="button">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">每组页数</span>
+              <input type="text" class="form-control tatalpage" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" value="5" />
             </div>
           </div>
-          <div class="row p-2">
-            <div class="col">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default"
-                  >每组页数</span
-                >
-                <input
-                  type="text"
-                  class="form-control tatalpage"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default"
-                  value="5"
-                />
-              </div>
-            </div>
 
-            <div class="col">
-              <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >大图预览</label
-                >
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected value="on">开启</option>
-                  <option selected value="off">关闭</option>
-                </select>
-              </div>
+          <div class="col">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">大图预览</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected value="on">开启</option>
+                <option selected value="off">关闭</option>
+              </select>
             </div>
-            <div class="col">
-              <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >搜索模式</label
-                >
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected value="tag">匹配部分标签</option>
-                  <option value="otag">全标签</option>
-                  <option value="des">标题或描述</option>
-                </select>
-              </div>
+          </div>
+          <div class="col">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">搜索模式</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected value="tag">匹配部分标签</option>
+                <option value="otag">全标签</option>
+                <option value="des">标题或描述</option>
+              </select>
             </div>
-            <div class="col">
-              <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >排序模式</label
-                >
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected value="1">按收藏数排序</option>
-                  <option value="2">按人气(浏览数)排序</option>
-                </select>
-              </div>
+          </div>
+          <div class="col">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">排序模式</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected value="1">按收藏数排序</option>
+                <option value="2">按人气(浏览数)排序</option>
+              </select>
             </div>
-            <div class="col">
-              <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01"
-                  >更多排序</label
-                >
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected value="on">开启</option>
-                  <option selected value="off">关闭</option>
-                </select>
-              </div>
+          </div>
+          <div class="col">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect01">更多排序</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected value="on">开启</option>
+                <option selected value="off">关闭</option>
+              </select>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- 返回顶部 -->
-    <div class="Back-to-top fixed-bottom">
-      <a
-        href="#header"
-        class="btn m-2 btn-primary float-end bi bi-arrow-up-square-fill"
-        style="color: #fff"
-        >返回顶部</a
-      >
-    </div>
+  <!-- 返回顶部 -->
+  <div class="Back-to-top fixed-bottom">
+    <a href="#header" class="btn m-2 btn-primary float-end bi bi-arrow-up-square-fill" style="color: #fff">返回顶部</a>
+  </div>
 
-    <!-- <script
-      async
-      src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-      integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
-      crossorigin="anonymous"
-    ></script> -->
-    <script src="static/demo/assets/js/jquery.min.js"></script>
-    <script src="static/demo/assets/js/bootstrap.min.js"></script>
-    <script src="static/demo/assets/js/chromagallery.pkgd.min.js"></script>
-    <script src="static/demo/assets/js/main.js"></script>
-    <script>
-      $(".card").chromaGallery({
-        color: "#000",
-        gridMargin: 15,
-        maxColumns: 5,
-        dof: true,
-        screenOpacity: 0.8,
-      });
-      recommend();
-    </script>
-  </body>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-m8fnrzriS+K9UdaDHdBgNfXMAURqWvA2rK5o/xq2kNx9RG3dZAcKo59qXnE9iLUU"
+    crossorigin="anonymous"></script> -->
+
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+    async></script>
+  <script src="static/demo/assets/js/jquery.min.js"></script>
+  <script src="static/demo/assets/js/chromagallery.pkgd.min.js"></script>
+  <script src="static/demo/assets/js/main.js"></script>
+  <script>
+    recommend();
+  </script>
+</body>
+
 </html>
