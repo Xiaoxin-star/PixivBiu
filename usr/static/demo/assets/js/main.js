@@ -272,7 +272,7 @@ $("#Search").click(function () {
 // # mode(r18榜单需登录): [day_r18, day_male_r18, day_female_r18, week_r18, week_r18g]
 
 function ranking_all(ranking_mode = "monthly", page = totalPage, date = null) {
-a  $.jax({
+  $.ajax({
     url: "api/biu/get/rank/",
     type: "GET",
     data: {
