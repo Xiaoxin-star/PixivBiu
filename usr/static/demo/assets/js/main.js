@@ -402,7 +402,7 @@ function showPics(
         '" /></a><div class="card-body">' +
         ' <a href=""><h5 class="card-title ">' +
         data[i]["title"] +
-        '</h5></a><p class="card-text ">' +
+        '</h5></a><p class="card-text">' +
         data[i]["caption"] +
         ' </p><a href="#">' +
         '<p class="card-text"><img style="margin-right: 10px;" class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
