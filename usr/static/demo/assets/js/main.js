@@ -393,7 +393,8 @@ function showPics(
 
       // 合成文本
       rstHtml +=
-        '<div class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href="#"><img class="img-thumbnail" id="' +
+        '<div class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href="javascript:void(0);' +
+        '" onclick="Pop_ups()"><img class="img-thumbnail" id="' +
         data[i]["id"] +
         ' " loading ="lazy" src="' +
         imgUrlCover +
@@ -420,9 +421,10 @@ function showPics(
     $(".img").hide();
   }
 }
-$(".card").click(function () {
-  alert("ceshi");
-});
+
+function Pop_ups() {
+  alert("ccc");
+}
 var zt = false;
 $(window).keydown(function (e) {
   if ((e.keyCode == 32 && zt) || (e.keyCode == 16 && zt)) {
