@@ -306,8 +306,9 @@ function showPics(
 ) {
   let rstHtml = "",
     kt;
-  // $(".progress").removeClass("invisible");
-  // $(".progress").css("width", "0%");
+
+  $(".progress.bar").css("width", "0%");
+  $(".progress").removeClass("invisible");
   if (c.rst && c.rst.data) {
     let i = 0;
     const data = c.rst.data;
@@ -369,31 +370,31 @@ function showPics(
             "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
           );
           // 加载完成隐藏进度条
-          // setTimeout(function () {
-          //   $(".progress").addClass("invisible");
-          // }, 1500);
+          setTimeout(function () {
+            $(".progress").addClass("invisible");
+          }, 1500);
         }
       }
 
       // 合成文本
       rstHtml +=
-        '<div class="col-sm-6 col-lg-3"><div class="card mb-2"><a href=""><img id="' +
+        '<div class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href=""><img id="' +
         data[i]["id"] +
         ' " loading ="lazy" src="' +
         imgUrlCover +
         '"class="card-img-top" alt="' +
         data[i]["title"] +
         '" /></a><div class="card-body">' +
-        ' <a href=""><h5 class="card-title">' +
+        ' <a href=""><h5 class="card-title ">' +
         data[i]["title"] +
-        '</h5></a><p class="card-text text-truncate">' +
+        '</h5></a><p class="card-text ">' +
         data[i]["caption"] +
         ' </p><a href="">' +
-        '<p class="card-text"><img class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
+        '<p class="card-text"><img style="margin-right: 10px;" class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
         imgUrl +
         '"alt="Avatar" />' +
         data[i]["author"]["account"] +
-        '<small class="text-muted float-end">' +
+        '<small class=" text-muted float-end">' +
         data[i]["created_time"] +
         '</small><h6 class="card-subtitle mb-2 text-muted align-middle" id="' +
         data[i]["author"]["id"] +
