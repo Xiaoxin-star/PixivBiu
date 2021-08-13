@@ -307,8 +307,18 @@ function showPics(
   let rstHtml = "",
     kt;
 
-  $(".progress.bar").css("width", "0%");
-  $(".progress").removeClass("invisible");
+  // 进度条
+  var progress_bar =
+    '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"' +
+    'aria-labelledby="staticBackdropLabel" aria-hidden="true" >' +
+    '<div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="progress">' +
+    ' <div  class="progress-bar progress-bar-animated progress-bar-striped"' +
+    ' role="progressbar"  style="width: 0%" aria-valuenow="10"  aria-valuemin="0" aria-valuemax="100" >' +
+    ' <h6 class="modal-title" id="staticBackdropLabel">正在加载</h6></div>   </div></div></div> </div>';
+  // 渲染进度条
+  $("body").before(progress_bar);
+  var myModal = new bootstrap.Modal($("#staticBackdrop"));
+  myModal.show();
   if (c.rst && c.rst.data) {
     let i = 0;
     const data = c.rst.data;
@@ -362,20 +372,19 @@ function showPics(
         //如果加载完成执行
         if (n == imgSrc.length) {
           console.log("ok");
-          $(".progress-bar").css("width", "100%");
           // 输出
           $("#img-items").html(rstHtml);
-          // 重载js文件
-          $.getScript(
-            "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-          );
           // 加载完成隐藏进度条
           setTimeout(function () {
-            $(".progress").addClass("invisible");
-          }, 1500);
+            // 重载js文件
+            $.getScript(
+              "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+            );
+          }, 200);
+          myModal.hide();
         }
       }
-
+     
       // 合成文本
       rstHtml +=
         '<div class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href=""><img id="' +
