@@ -307,22 +307,27 @@ function showPics(
   let rstHtml = "",
     kt;
 
-  // 进度条
-  var progress_bar =
-    '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"' +
-    'aria-labelledby="staticBackdropLabel" aria-hidden="true" >' +
-    '<div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="progress">' +
-    ' <div  class="progress-bar progress-bar-animated progress-bar-striped"' +
-    ' role="progressbar"  style="width: 0%" aria-valuenow="10"  aria-valuemin="0" aria-valuemax="100" >' +
-    ' <h6 class="modal-title" id="staticBackdropLabel">正在加载</h6></div>   </div></div></div> </div>';
-  // 渲染进度条
-  $("body").before(progress_bar);
-  var myModal = new bootstrap.Modal($("#staticBackdrop"));
-  myModal.show();
   if (c.rst && c.rst.data) {
     let i = 0;
     const data = c.rst.data;
+    // 判断是否有数据
+    if (data.length == 0) {
+      $(".toast").toast("show");
 
+      return;
+    }
+    // 进度条
+    var progress_bar =
+      '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"' +
+      'aria-labelledby="staticBackdropLabel" aria-hidden="true" >' +
+      '<div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="progress">' +
+      ' <div  class="progress-bar progress-bar-animated progress-bar-striped"' +
+      ' role="progressbar"  style="width: 0%" aria-valuenow="10"  aria-valuemin="0" aria-valuemax="100" >' +
+      ' <h6 class="modal-title" id="staticBackdropLabel">正在加载</h6></div>   </div></div></div> </div>';
+    // 渲染进度条
+    $("body").before(progress_bar);
+    var myModal = new bootstrap.Modal($("#staticBackdrop"));
+    myModal.show();
     // 通用作品整理
     for (
       i = 0;
@@ -382,12 +387,13 @@ function showPics(
             );
           }, 200);
           myModal.hide();
+          $("#staticBackdrop").remove();
         }
       }
-     
+
       // 合成文本
       rstHtml +=
-        '<div class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href=""><img id="' +
+        '<div class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href="#"><img class="img-thumbnail" id="' +
         data[i]["id"] +
         ' " loading ="lazy" src="' +
         imgUrlCover +
@@ -398,7 +404,7 @@ function showPics(
         data[i]["title"] +
         '</h5></a><p class="card-text ">' +
         data[i]["caption"] +
-        ' </p><a href="">' +
+        ' </p><a href="#">' +
         '<p class="card-text"><img style="margin-right: 10px;" class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
         imgUrl +
         '"alt="Avatar" />' +
@@ -414,3 +420,28 @@ function showPics(
     $(".img").hide();
   }
 }
+$(".card").click(function () {
+  alert("ceshi");
+});
+var zt = false;
+$(window).keydown(function (e) {
+  if ((e.keyCode == 32 && zt) || (e.keyCode == 16 && zt)) {
+    zt = false;
+    var myOffcanvas = document.getElementById("offcanvasBottom");
+    var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+    bsOffcanvas.show();
+    myOffcanvas.addEventListener("show.bs.offcanvas", function () {
+      $("body").css({
+        "overflow-x": "hidden",
+        "overflow-y": "hidden",
+      });
+    });
+    myOffcanvas.addEventListener("hidden.bs.offcanvas", function () {
+      $("body").css({
+        "overflow-x": "auto",
+        "overflow-y": "auto",
+      });
+      zt = true;
+    });
+  }
+});
