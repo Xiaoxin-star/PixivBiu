@@ -3,6 +3,8 @@ var tmpPageData;
 var types_of;
 var tmpSearchSettings = {};
 var downloadList = {};
+//图片列表（可以替换成网络图片，图片越多效果越明显）
+var imgList = [];
 var settingsMods = {
   "#settingsPageNum": ["pixivbiu_searchPageNum", 5, "每组页数"],
   "#settingsIsOriPic": ["pixivbiu_displayIsOriPic", "off", "大图预览"],
@@ -271,7 +273,7 @@ $("#Search").click(function () {
 // 排行榜
 // # mode(r18榜单需登录): [day_r18, day_male_r18, day_female_r18, week_r18, week_r18g]
 
-function ranking_all(ranking_mode = "monthly", page = totalPage, date = null) {
+function ranking_all(ranking_mode = "monthly", page = 1, date = null) {
   $.ajax({
     url: "api/biu/get/rank/",
     type: "GET",
@@ -304,7 +306,8 @@ function showPics(
 ) {
   let rstHtml = "",
     kt;
-
+  // $(".progress").removeClass("invisible");
+  // $(".progress").css("width", "0%");
   if (c.rst && c.rst.data) {
     let i = 0;
     const data = c.rst.data;
@@ -327,86 +330,77 @@ function showPics(
         "https://i.pximg.net",
         settingsMods["#settingsRvrProxyUrl"][1]
       );
-
-      // 图片预览内容
-      var extraText =
-        '<a target="_blank" href=".?code=%40u%3d' +
-        data[i]["author"]["id"] +
-        '%20-i">🔍作者插画</a> <a target="_blank" href=".?code=%40u%3d' +
-        data[i]["author"]["id"] +
-        '%20-c">🔍作者漫画</a>';
-
-      if (data[i]["all"]["meta_pages"].length > 0) {
-        extraText =
-          '<a target="_blank" href=".?code=%40w%3d' +
-          data[i]["id"] +
-          '">👀查看</a> ' +
-          extraText;
+      // 图片预加载
+      imgList.push(imgUrlCover);
+      //图片加载方法
+      function load(imgSrc, callback) {
+        var imgs = [];
+        var c = 0;
+        for (var i = 0; i < imgSrc.length; i++) {
+          imgs[i] = new Image();
+          imgs[i].src = imgSrc[i];
+          imgs[i].onload = function () {
+            c++;
+            if (callback) {
+              callback(c, imgSrc);
+            }
+          };
+        }
+        return imgs;
+      }
+      //需要操作这里的方法
+      function imgStatus(n, imgSrc) {
+        // 显示进度条
+        //加载进度百分比 (加载数量 / 图片数量 * 100)
+        var loadImgNum = parseInt(
+          parseFloat(n / imgSrc.length).toFixed(2) * 100
+        );
+        //做加载动画处理
+        console.log(loadImgNum);
+        $(".progress-bar").css("width", loadImgNum + "%");
+        //如果加载完成执行
+        if (n == imgSrc.length) {
+          console.log("ok");
+          $(".progress-bar").css("width", "100%");
+          // 输出
+          $("#img-items").html(rstHtml);
+          // 重载js文件
+          $.getScript(
+            "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+          );
+          // 加载完成隐藏进度条
+          // setTimeout(function () {
+          //   $(".progress").addClass("invisible");
+          // }, 1500);
+        }
       }
 
-      // 图片信息展示
-      var desText =
-        '<h2><a target="_blank" href="https://www.pixiv.net/artworks/' +
-        data[i]["id"] +
-        '">' +
-        data[i]["title"] +
-        '</a></h2><p>Created by <a target="_blank" href="https://www.pixiv.net/users/' +
-        data[i]["author"]["id"] +
-        '">' +
-        data[i]["author"]["name"] +
-        "</a> on " +
-        data[i]["created_time"] +
-        "<br>#收藏" +
-        data[i]["total_bookmarked"] +
-        " #浏览" +
-        data[i]["total_viewed"] +
-        "</p>";
-      //// 标签
-      var tagss = '<p style="max-width: 25%;">';
-      for (let kk = 0; kk < data[i]["tags"].length; kk++) {
-        tagss =
-          tagss +
-          '<a target="_blank" href=".?code=%40s%3d' +
-          escape(data[i]["tags"][kk]) +
-          ' -o">#' +
-          data[i]["tags"][kk] +
-          "</a> ";
-      }
-      desText = tagss + "</p>" + desText;
-      if (c["args"]["ops"]["method"] === "oneWork" && i !== 0) {
-        extra = "";
-        extraText = "";
-        desText = "";
-      }
-
-      // 最终结果
+      // 合成文本
       rstHtml +=
-        '<div class="card-group" id = "' +
+        '<div class="col-sm-6 col-lg-3"><div class="card mb-2"><a href=""><img id="' +
         data[i]["id"] +
-        '"><div class="card position-relative">' +
-        '<div id="role" class="img position-absolute top-50 start-50 translate-middle"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>' +
-        '<a href="' +
-        imgUrl +
-        '">' +
-        '<img src="' +
+        ' " loading ="lazy" src="' +
         imgUrlCover +
-        ' " class="card-img-top img-items"' +
-        'alt="' +
+        '"class="card-img-top" alt="' +
         data[i]["title"] +
-        '"/></a>' +
-        '<div class="card-body">' +
-        '<h5 class="card-title">' +
+        '" /></a><div class="card-body">' +
+        ' <a href=""><h5 class="card-title">' +
         data[i]["title"] +
-        '</h5><h6 class="card-subtitle mb-2 text-muted">' +
-        extra +
-        '</h6><p class="card-text">' +
-        extraText +
-        "</p></div></div></div>";
+        '</h5></a><p class="card-text text-truncate">' +
+        data[i]["caption"] +
+        ' </p><a href="">' +
+        '<p class="card-text"><img class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
+        imgUrl +
+        '"alt="Avatar" />' +
+        data[i]["author"]["account"] +
+        '<small class="text-muted float-end">' +
+        data[i]["created_time"] +
+        '</small><h6 class="card-subtitle mb-2 text-muted align-middle" id="' +
+        data[i]["author"]["id"] +
+        '"></h6> </p></a></div> </div> </div>';
     }
-
-    // 输出
-    $("#Card-img").html(rstHtml);
+    //调用预加载
+    load(imgList, imgStatus);
     $(".img").hide();
-    $(".progress-bar").animate("width", "100%");
   }
 }
