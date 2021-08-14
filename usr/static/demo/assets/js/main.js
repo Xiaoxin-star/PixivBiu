@@ -318,17 +318,17 @@ function showPics(
       return;
     }
     // 进度条
-    // var progress_bar =
-    //   '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"' +
-    //   'aria-labelledby="staticBackdropLabel" aria-hidden="true" >' +
-    //   '<div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="progress">' +
-    //   ' <div  class="progress-bar progress-bar-animated progress-bar-striped"' +
-    //   ' role="progressbar"  style="width: 0%" aria-valuenow="10"  aria-valuemin="0" aria-valuemax="100" >' +
-    //   ' <h6 class="modal-title" id="staticBackdropLabel">正在加载</h6></div>   </div></div></div> </div>';
-    // // 渲染进度条
-    // $("body").before(progress_bar);
-    // var myModal = new bootstrap.Modal($("#staticBackdrop"));
-    // myModal.show();
+    var progress_bar =
+      '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"' +
+      'aria-labelledby="staticBackdropLabel" aria-hidden="true" >' +
+      '<div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="progress">' +
+      ' <div  class="progress-bar progress-bar-animated progress-bar-striped"' +
+      ' role="progressbar"  style="width: 0%" aria-valuenow="10"  aria-valuemin="0" aria-valuemax="100" >' +
+      ' <h6 class="modal-title" id="staticBackdropLabel">正在加载</h6></div>   </div></div></div> </div>';
+    // 渲染进度条
+    $("body").before(progress_bar);
+    var myModal = new bootstrap.Modal($("#staticBackdrop"));
+    myModal.show();
     // 通用作品整理
     for (
       i = 0;
@@ -376,13 +376,11 @@ function showPics(
           parseFloat(n / imgSrc.length).toFixed(2) * 100
         );
         //做加载动画处理
-        var index = layer.load();
+
         // console.log(loadImgNum);
-        // $(".progress-bar").css("width", loadImgNum + "%");
+        $(".progress-bar").css("width", loadImgNum + "%");
         //如果加载完成执行
         if (n == imgSrc.length) {
-          //关闭
-          layer.close(index);
           // console.log("ok");
           // 输出
           $("#img-items").html(rstHtml);
@@ -392,9 +390,9 @@ function showPics(
             $.getScript(
               "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
             );
-          }, 2000);
-          // myModal.hide();
-          // $("#staticBackdrop").remove();
+          }, 200);
+          myModal.hide();
+          $("#staticBackdrop").remove();
         }
       }
 
@@ -402,9 +400,9 @@ function showPics(
         '<div id="img-ck" class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href="javascript:void(0);' +
         '" onclick="Pop_ups(' +
         ')"><img class="img-thumbnail" layer-src="' +
-        imgUrlCover +
-        '" loading ="lazy" src="' +
         imgUrl +
+        '" loading ="lazy" src="' +
+        imgUrlCover +
         '"class="card-img-top" alt="' +
         data[i]["title"] +
         '" /></a><div class="card-body">' +
@@ -423,11 +421,11 @@ function showPics(
         data[i]["author"]["id"] +
         '"></h6> </p></a></div> </div> </div>';
     }
-    //调用预加载
-    load(imgList, imgStatus);
-    $(".img").hide();
   }
+  //调用预加载
+  load(imgList, imgStatus);
 }
+
 // 图片预览
 function Pop_ups() {
   layer.load(2, { time: 10 * 1000 });
