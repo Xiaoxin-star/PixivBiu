@@ -72,7 +72,6 @@ $("#types-of option").click(function () {
 $("#Search").click(function () {
   // 搜索关键字
   var search_text = $(".search-text").val();
-
   // 类型
   types_of = $("#types-of").val();
   // $(".search-text").val(null);
@@ -339,7 +338,7 @@ function showPics(
       i++
     ) {
       var extra = "";
-      var imgUrlCover = data[i]["image_urls"]["large"].replace(
+      var imgUrlCover = data[i]["image_urls"]["medium"].replace(
         "https://i.pximg.net",
         settingsMods["#settingsRvrProxyUrl"][1]
       );
@@ -348,6 +347,9 @@ function showPics(
         "https://i.pximg.net",
         settingsMods["#settingsRvrProxyUrl"][1]
       );
+      var Avatar = data[i]["all"]["user"]["profile_image_urls"][
+        "medium"
+      ].replace("https://i.pximg.net", settingsMods["#settingsRvrProxyUrl"][1]);
       // 图片预加载
       imgList.push(imgUrlCover);
       //图片加载方法
@@ -399,7 +401,7 @@ function showPics(
         ')"><img class="img-thumbnail" layer-src="' +
         imgUrlCover +
         '" loading ="lazy" src="' +
-        imgUrlCover +
+        imgUrl +
         '"class="card-img-top" alt="' +
         data[i]["title"] +
         '" /></a><div class="card-body">' +
@@ -409,7 +411,7 @@ function showPics(
         data[i]["caption"] +
         ' </p><a href="#">' +
         '<p class="card-text"><img style="margin-right: 10px;" class="rounded-circle" width="20px" height="20px" loading ="lazy" src="' +
-        imgUrl +
+        Avatar +
         '"alt="Avatar" />' +
         data[i]["author"]["account"] +
         '<small class=" text-muted float-end">' +
@@ -425,13 +427,11 @@ function showPics(
 }
 // 图片预览
 function Pop_ups() {
-  // $.getScript("static/demo/assets/layui/layui.js");
-  layui.use("layer", function () {
-    var layer = layui.layer;
-    layer.photos({
-      photos: ".card",
-      anim: 4, //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
-    });
+  layer.load(2, { time: 10 * 1000 });
+  layer.photos({
+    photos: ".card",
+    anim: 1,
+    //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
   });
 }
 // 搜索框
