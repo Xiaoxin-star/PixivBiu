@@ -425,12 +425,13 @@ function showPics(
 function Pop_ups() {
   alert("ccc");
 }
-var zt = false;
+// 搜索框
+var zt = true;
 $(window).keydown(function (e) {
-  if ((e.keyCode == 32 && zt) || (e.keyCode == 16 && zt)) {
+  var myOffcanvas = document.getElementById("offcanvasBottom");
+  var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+  if ((e.keyCode == 32 && zt) || (e.keyCode == 13 && zt)) {
     zt = false;
-    var myOffcanvas = document.getElementById("offcanvasBottom");
-    var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
     bsOffcanvas.show();
     myOffcanvas.addEventListener("show.bs.offcanvas", function () {
       $("body").css({
@@ -445,5 +446,7 @@ $(window).keydown(function (e) {
       });
       zt = true;
     });
+  } else {
+    bsOffcanvas.hide();
   }
 });
