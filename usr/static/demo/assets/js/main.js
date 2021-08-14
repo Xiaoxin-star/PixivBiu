@@ -17,6 +17,8 @@ var settingsMods = {
     "图片反代地址",
   ],
 };
+// 加载数据
+recommend();
 // 搜索页码
 var tatalpage = $(".tatalpage").val();
 // 推荐插画
@@ -391,12 +393,12 @@ function showPics(
         }
       }
 
-      // 合成文本
       rstHtml +=
-        '<div class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href="javascript:void(0);' +
-        '" onclick="Pop_ups()"><img class="img-thumbnail" id="' +
-        data[i]["id"] +
-        ' " loading ="lazy" src="' +
+        '<div id="img-ck" class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href="javascript:void(0);' +
+        '" onclick="Pop_ups(' +
+        ')"><img class="img-thumbnail" layer-src="' +
+        imgUrlCover +
+        '" loading ="lazy" src="' +
         imgUrlCover +
         '"class="card-img-top" alt="' +
         data[i]["title"] +
@@ -421,16 +423,24 @@ function showPics(
     $(".img").hide();
   }
 }
-
+// 图片预览
 function Pop_ups() {
-  alert("ccc");
+  // $.getScript("static/demo/assets/layui/layui.js");
+  layui.use("layer", function () {
+    var layer = layui.layer;
+    layer.photos({
+      photos: ".card",
+      anim: 0, //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+    });
+  });
 }
-var zt = false;
+// 搜索框
+var zt = true;
 $(window).keydown(function (e) {
-  if ((e.keyCode == 32 && zt) || (e.keyCode == 16 && zt)) {
+  var myOffcanvas = document.getElementById("offcanvasBottom");
+  var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+  if ((e.keyCode == 32 && zt) || (e.keyCode == 13 && zt)) {
     zt = false;
-    var myOffcanvas = document.getElementById("offcanvasBottom");
-    var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
     bsOffcanvas.show();
     myOffcanvas.addEventListener("show.bs.offcanvas", function () {
       $("body").css({
@@ -445,5 +455,7 @@ $(window).keydown(function (e) {
       });
       zt = true;
     });
+  } else {
+    bsOffcanvas.hide();
   }
 });

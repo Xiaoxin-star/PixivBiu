@@ -14,6 +14,7 @@
       rel="stylesheet"
       href="/static/demo/assets/css/chromagallery.min.css"
     />
+    <!-- <link rel="stylesheet" href="/static/demo/assets/layui/css/layui.css" /> -->
     <title>PixivBiu</title>
 
     <style>
@@ -203,17 +204,6 @@
                   >
                 </li>
               </ul>
-            </li>
-            <li class="nav-item">
-              <a
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasBottom"
-                aria-controls="offcanvasBottom"
-                class="nav-link text-light"
-                href="#"
-                >搜索</a
-              >
             </li>
           </ul>
           <!-- 右侧个人中心 -->
@@ -492,12 +482,29 @@
       </div>
     </div>
 
+    <!-- 图片预览 -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="yulan-img"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen-xxl">
+        <div class="modal-content">
+          <img class="img-yulan" src="" alt="" />
+        </div>
+      </div>
+    </div>
+
     <script src="static/demo/assets/js/jquery.min.js"></script>
     <script src="static/demo/assets/js/bootstrap.bundle.min.js"></script>
     <script src="static/demo/assets/js/chromagallery.pkgd.min.js"></script>
     <script src="static/demo/assets/js/main.js"></script>
-    <script>
-      recommend();
-    </script>
+    <!-- <script src="static/demo/assets/layer/layer.js"></script> -->
+    <script src="static/demo/assets/layui/layui.js"></script>
+    <script></script>
   </body>
 </html>
