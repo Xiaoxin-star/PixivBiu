@@ -62,7 +62,7 @@ biu:
       # 搜索池最大线程数
 
     loadCacheFirst:
-      true
+      false
       # 搜索时优先加载本地缓存
       # true 为开启；false 为关闭
 
@@ -123,7 +123,7 @@ biu:
       # true 为开启；false 为关闭
 
     whatsUgoira:
-      "gif"
+      "webp"
       # 将动图转换为指定格式
       # 可选 webp, gif
 

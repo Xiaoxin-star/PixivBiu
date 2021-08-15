@@ -314,21 +314,9 @@ function showPics(
     // 判断是否有数据
     if (data.length == 0) {
       $(".toast").toast("show");
-
       return;
     }
-    // 进度条
-    var progress_bar =
-      '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"' +
-      'aria-labelledby="staticBackdropLabel" aria-hidden="true" >' +
-      '<div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="progress">' +
-      ' <div  class="progress-bar progress-bar-animated progress-bar-striped"' +
-      ' role="progressbar"  style="width: 0%" aria-valuenow="10"  aria-valuemin="0" aria-valuemax="100" >' +
-      ' <h6 class="modal-title" id="staticBackdropLabel">正在加载</h6></div>   </div></div></div> </div>';
-    // 渲染进度条
-    $("body").before(progress_bar);
-    var myModal = new bootstrap.Modal($("#staticBackdrop"));
-    myModal.show();
+
     // 通用作品整理
     for (
       i = 0;
@@ -342,7 +330,6 @@ function showPics(
         "https://i.pximg.net",
         settingsMods["#settingsRvrProxyUrl"][1]
       );
-
       var imgUrl = data[i]["image_urls"]["large"].replace(
         "https://i.pximg.net",
         settingsMods["#settingsRvrProxyUrl"][1]
@@ -350,54 +337,9 @@ function showPics(
       var Avatar = data[i]["all"]["user"]["profile_image_urls"][
         "medium"
       ].replace("https://i.pximg.net", settingsMods["#settingsRvrProxyUrl"][1]);
-      // 图片预加载
-      imgList.push(imgUrlCover);
-      //图片加载方法
-      function load(imgSrc, callback) {
-        var imgs = [];
-        var c = 0;
-        for (var i = 0; i < imgSrc.length; i++) {
-          imgs[i] = new Image();
-          imgs[i].src = imgSrc[i];
-          imgs[i].onload = function () {
-            c++;
-            if (callback) {
-              callback(c, imgSrc);
-            }
-          };
-        }
-        return imgs;
-      }
-      //需要操作这里的方法
-      function imgStatus(n, imgSrc) {
-        // 显示进度条
-        //加载进度百分比 (加载数量 / 图片数量 * 100)
-        var loadImgNum = parseInt(
-          parseFloat(n / imgSrc.length).toFixed(2) * 100
-        );
-        //做加载动画处理
-
-        // console.log(loadImgNum);
-        $(".progress-bar").css("width", loadImgNum + "%");
-        //如果加载完成执行
-        if (n == imgSrc.length) {
-          // console.log("ok");
-          // 输出
-          $("#img-items").html(rstHtml);
-          // 加载完成隐藏进度条
-          setTimeout(function () {
-            // 重载js文件
-            $.getScript(
-              "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-            );
-          }, 200);
-          myModal.hide();
-          $("#staticBackdrop").remove();
-        }
-      }
 
       rstHtml +=
-        '<div id="img-ck" class="col-sm-6 col-lg-3 "><div class="card mb-2"><a href="javascript:void(0);' +
+        '<div id="img-ck" class="col-sm-6 col-lg-3 grid-item"><div class="card mb-2"><a href="javascript:void(0);' +
         '" onclick="Pop_ups(' +
         ')"><img class="img-thumbnail" layer-src="' +
         imgUrl +
@@ -421,9 +363,16 @@ function showPics(
         data[i]["author"]["id"] +
         '"></h6> </p></a></div> </div> </div>';
     }
+    $("#img-items").html(rstHtml);
+    var $grid = $(".grid").masonry({
+      // options
+      itemSelector: ".grid-item",
+    });
+    // layout Masonry after each image loads
+    $grid.imagesLoaded().progress(function () {
+      $grid.masonry("layout");
+    });
   }
-  //调用预加载
-  load(imgList, imgStatus);
 }
 
 // 图片预览
