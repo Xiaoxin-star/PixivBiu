@@ -25,7 +25,11 @@ function recommend(type = "illust") {
     type: "GET",
     data: {
       type: type,
+<<<<<<< HEAD
       totalPage: 1,
+=======
+      totalPage: totalPage,
+>>>>>>> 54e66f49760a72095768871b91b489107b492b01
       groupIndex: 0,
       sortMode: 0,
       isSort: 0,
@@ -47,6 +51,7 @@ function recommend(type = "illust") {
 
 $("#types-of option").click(function () {
   types_of = $("#types-of").val();
+<<<<<<< HEAD
 
   switch (Number(types_of)) {
     case 1:
@@ -64,6 +69,25 @@ $("#types-of option").click(function () {
   }
 });
 
+=======
+
+  switch (Number(types_of)) {
+    case 1:
+      $(".search-text").attr("placeholder", "请输入搜索关键字");
+      break;
+    case 2:
+      $(".search-text").attr("placeholder", "请输入用户名");
+      break;
+    case 3:
+      $(".search-text").attr("placeholder", "请输入作品ID");
+      break;
+    default:
+      $(".search-text").attr("placeholder", "请输入作者ID");
+      break;
+  }
+});
+
+>>>>>>> 54e66f49760a72095768871b91b489107b492b01
 // 搜索
 $("#Search").click(function () {
   // 搜索关键字
@@ -272,7 +296,11 @@ $("#Search").click(function () {
 // # mode(r18榜单需登录): [day_r18, day_male_r18, day_female_r18, week_r18, week_r18g]
 
 function ranking_all(ranking_mode = "monthly", page = totalPage, date = null) {
+<<<<<<< HEAD
   $.ajax({
+=======
+a  $.jax({
+>>>>>>> 54e66f49760a72095768871b91b489107b492b01
     url: "api/biu/get/rank/",
     type: "GET",
     data: {
